@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31605.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSA2.0", "DBSA2.0\DBSA2.0.csproj", "{76EA5084-C6E8-40BE-B82C-A04F3BF08A19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76EA5084-C6E8-40BE-B82C-A04F3BF08A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76EA5084-C6E8-40BE-B82C-A04F3BF08A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76EA5084-C6E8-40BE-B82C-A04F3BF08A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76EA5084-C6E8-40BE-B82C-A04F3BF08A19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BEC93D7-6422-4222-ABDF-8F3F880548E5}
+	EndGlobalSection
+EndGlobal
