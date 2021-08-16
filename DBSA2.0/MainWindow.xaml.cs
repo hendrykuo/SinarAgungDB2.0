@@ -20,15 +20,8 @@ namespace DBSA2._0
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        class ButtonData
-        {
-            public SolidColorBrush foreground;
-            public SolidColorBrush background;
-            public SolidColorBrush borderBrush;
-        }
+        Button disabledButton = null;
         Button[] buttons;
-        ButtonData[] buttonOriginalState;
         public MainWindow()
         {
             InitializeComponent();
@@ -41,24 +34,39 @@ namespace DBSA2._0
             buttons[1] = registerItemBtn;
             buttons[2] = checkItemBtn;
             buttons[3] = utilityBtn;
-            buttonOriginalState = new ButtonData[numOfButton];
-            for (int i = 0; i < numOfButton; i++)
-            {
-                buttonOriginalState[i] = new ButtonData() { background = buttons[0].Background.c}
-            }
         }
-        private void ResetButtonColor()
-        { 
-        
+        void ToggleButton(Button button)
+        {
+            if (disabledButton != null)
+            {
+                disabledButton.IsEnabled = true;
+            }
+            button.IsEnabled = false;
+            disabledButton = button;
         }
         private void inputItemButtonClicked(object sender, RoutedEventArgs e)
         {
-            programMainFrame.Content = new Temporary("Input Item Page");
+            ToggleButton(sender as Button);
+            programMainFrame.Content = new Pages.InpuItemPage();
+            //programMainFrame.Content = new Temporary("Input Item Page");
         }
 
         private void registerItemButtonClicked(object sender, RoutedEventArgs e)
         {
+            ToggleButton(sender as Button);
             programMainFrame.Content = new Temporary("Register Item Page");
+        }
+
+        private void checkItemButtonClicked(object sender, RoutedEventArgs e)
+        {
+            ToggleButton(sender as Button);
+            programMainFrame.Content = new Temporary("Check Item Item Page");
+        }
+
+        private void utilityButtonClicked(object sender, RoutedEventArgs e)
+        {
+            ToggleButton(sender as Button);
+            programMainFrame.Content = new Temporary("Utility Item Page");
         }
     }
 }

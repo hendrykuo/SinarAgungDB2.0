@@ -38,6 +38,7 @@
                 </Button>
                 <Button x:Name="checkItemBtn"
                         Margin="5, 5, 5, 5"
+                        Click="checkItemButtonClicked"
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">
@@ -48,6 +49,7 @@
                 </Button>
                 <Button x:Name="utilityBtn" 
                         Margin="5, 5, 5, 5"
+                        Click="utilityButtonClicked"
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">

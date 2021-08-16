@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Github Project\SADBGit\SADBGit\DBSA2.0\obj\Debug\net5.0-windows\
+D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\
 DBSA2._0
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-D:\Github Project\SADBGit\SADBGit\DBSA2.0\App.xaml
-2888906848
+D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\App.xaml
+362995268
 
-6-1177615803
+7761460009
 193-1891726104
-MainWindow.xaml;Temporary.xaml;
+MainWindow.xaml;Pages\InpuItemPage.xaml;Temporary.xaml;
 
 False
 
