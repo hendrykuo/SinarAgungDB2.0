@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.ComponentModel;
 namespace DBSA2._0
 {
     /// <summary>
@@ -20,11 +20,24 @@ namespace DBSA2._0
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<ClassLibrary.Location> warehouseLocation;
+
+        Pages.InputItemPage inputItemPage;
         Button disabledButton = null;
         Button[] buttons;
         public MainWindow()
         {
             InitializeComponent();
+            
+            SettupPages();
+            
+        }
+        private void SettupPages()
+        {
+            warehouseLocation = new List<ClassLibrary.Location>();
+            warehouseLocation.Add(new ClassLibrary.Location(0, "Gudang Margo"));
+            warehouseLocation.Add(new ClassLibrary.Location(1, "Gudang 65"));
+            inputItemPage = new Pages.InputItemPage(warehouseLocation);
         }
         private void SettupButtonData()
         {
@@ -47,8 +60,7 @@ namespace DBSA2._0
         private void inputItemButtonClicked(object sender, RoutedEventArgs e)
         {
             ToggleButton(sender as Button);
-            programMainFrame.Content = new Pages.InpuItemPage();
-            //programMainFrame.Content = new Temporary("Input Item Page");
+            programMainFrame.Content = inputItemPage;
         }
 
         private void registerItemButtonClicked(object sender, RoutedEventArgs e)
@@ -67,6 +79,15 @@ namespace DBSA2._0
         {
             ToggleButton(sender as Button);
             programMainFrame.Content = new Temporary("Utility Item Page");
+        }
+
+
+        private void testBtnClicked(object sender, RoutedEventArgs e)
+        {
+            uint test = (uint)warehouseLocation.Count - 1;
+            ClassLibrary.Location newLocation = new ClassLibrary.Location(test, "Temporary" + (warehouseLocation.Count-1).ToString());
+            warehouseLocation.Add(newLocation);
+            inputItemPage.UpdateWarehouseLocations();
         }
     }
 }

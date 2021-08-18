@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace DBSA2._0.Pages
 {
     /// <summary>
-    /// Interaction logic for InpuItemPage.xaml
+    /// Interaction logic for UtilityPage.xaml
     /// </summary>
-    public partial class InpuItemPage : Page
+    public partial class UtilityPage : Page
     {
-        public InpuItemPage()
+        public UtilityPage()
         {
             InitializeComponent();
         }

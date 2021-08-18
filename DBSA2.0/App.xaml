@@ -6,5 +6,34 @@
     <Application.Resources>
         <SolidColorBrush x:Key="menuBGColor" Color="#FF174B78"/>
         <Color x:Key="buttonColor">Red</Color>
+        <SolidColorBrush x:Key="borderBrushColor">#FFCDCDCD</SolidColorBrush>
+        <Style TargetType="Label"
+               x:Key="pageNameLabelStyle">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5, 0,0,0"/>
+        </Style>
+        <Style TargetType="Label"
+               x:Key="contentLabelStyle">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="Margin" Value="10,5,5,0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+        <Style TargetType="ListView" x:Key="listBoxStyle">
+            <Setter Property="Margin" Value="10,0,10,10"/>
+            <Setter Property="BorderBrush" Value="{StaticResource borderBrushColor}"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="textBoxStyle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="{StaticResource borderBrushColor}"/>
+        </Style>
+        <Style TargetType="Button" x:Key="buttonStyle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderBrush" Value="{StaticResource borderBrushColor}"/>
+            <Setter Property="Background" Value="#FFF1F0F0"/>
+        </Style>
     </Application.Resources>
 </Application>

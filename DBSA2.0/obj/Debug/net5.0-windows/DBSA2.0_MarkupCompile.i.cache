@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\App.xaml
-362995268
+41151797450
 
-7761460009
+10-1476970089
 193-1891726104
-MainWindow.xaml;Pages\InpuItemPage.xaml;Temporary.xaml;
+MainWindow.xaml;Pages\InputItemPage.xaml;Pages\UtilityPage.xaml;Temporary.xaml;
 
 False
 

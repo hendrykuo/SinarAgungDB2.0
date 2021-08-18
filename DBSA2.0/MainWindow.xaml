@@ -58,6 +58,9 @@
                                 TextAlignment="Center"
                                FontSize="14"/>
                 </Button>
+                <Button x:Name="testBtn"
+                        Content="testBtn"
+                        Click="testBtnClicked"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1" Margin="0,0,0,0">
