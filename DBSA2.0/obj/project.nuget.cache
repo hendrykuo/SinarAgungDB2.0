@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "4NR76Bz8E/XdN8w0cFc9a8bwGGZn/Pjb/HQS3iG581hDJUoN7POdb15W5FrSjNtyLFaHONl8RL+cHRlTtuv9KA==",
+  "dgSpecHash": "stXLndZOrAmIhG49nlW0pgXvTdO4B9A7m9r62QQhbBxo9dGpM1QuTook8ZYsm/ejFuLcahMFzcE2wFWJy2BrxA==",
   "success": true,
   "projectFilePath": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0\\DBSA2.0\\DBSA2.0.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\hendry kuo\\.nuget\\packages\\sqlite-net-pcl\\1.7.335\\sqlite-net-pcl.1.7.335.nupkg.sha512",
+    "C:\\Users\\hendry kuo\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.0.3\\sqlitepclraw.bundle_green.2.0.3.nupkg.sha512",
+    "C:\\Users\\hendry kuo\\.nuget\\packages\\sqlitepclraw.core\\2.0.3\\sqlitepclraw.core.2.0.3.nupkg.sha512",
+    "C:\\Users\\hendry kuo\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.0.3\\sqlitepclraw.lib.e_sqlite3.2.0.3.nupkg.sha512",
+    "C:\\Users\\hendry kuo\\.nuget\\packages\\sqlitepclraw.provider.dynamic_cdecl\\2.0.3\\sqlitepclraw.provider.dynamic_cdecl.2.0.3.nupkg.sha512",
+    "C:\\Users\\hendry kuo\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -69,21 +69,33 @@
                 </Grid.RowDefinitions>
                 <ListView Grid.Row="0"
                           x:Name="itemNameListBox"
-                          Style="{StaticResource listBoxStyle}"/>
+                          Style="{StaticResource listBoxStyle}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="No"
+                                            Width="50"
+                                            DisplayMemberBinding="{Binding Index}"/>
+                            <GridViewColumn Header="Nama Barang"
+                                            Width="190"
+                                            DisplayMemberBinding="{Binding ItemName}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
                 <Label Grid.Row="1"
                        Content="Lokasi Barang"
                        Style="{StaticResource contentLabelStyle}"/>
                 <ListView Grid.Row="2"
+                          HorizontalContentAlignment="Center"
                           x:Name="itemLocationListBox"
                           Style="{StaticResource listBoxStyle}" 
                           Margin="10,0,10,9">
                     <ListView.View>
-                        <GridView >
-                            <GridViewColumn Header="No"
-                                            Width="auto"
+                        <GridView>
+                            <GridViewColumn Header="No"                                    
+                                            Width="50"
                                             DisplayMemberBinding="{Binding index}"/>
                             <GridViewColumn Header="Nama Lokasi"
-                                            Width="auto"
+                                            Width="190"
                                             DisplayMemberBinding="{Binding location}"/>
                         </GridView>
                     </ListView.View>

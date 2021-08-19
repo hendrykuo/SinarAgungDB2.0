@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+
 namespace DBSA2._0
 {
     /// <summary>
@@ -20,7 +21,9 @@ namespace DBSA2._0
     /// </summary>
     public partial class MainWindow : Window
     {
-        List<ClassLibrary.Location> warehouseLocation;
+        ClassLibrary.DataBaseManager dataBaseManager;
+        
+        List<ClassLibrary.Location> warehouseLocations;
 
         Pages.InputItemPage inputItemPage;
         Button disabledButton = null;
@@ -28,16 +31,13 @@ namespace DBSA2._0
         public MainWindow()
         {
             InitializeComponent();
-            
+            dataBaseManager = new ClassLibrary.DataBaseManager();
             SettupPages();
             
         }
         private void SettupPages()
         {
-            warehouseLocation = new List<ClassLibrary.Location>();
-            warehouseLocation.Add(new ClassLibrary.Location(0, "Gudang Margo"));
-            warehouseLocation.Add(new ClassLibrary.Location(1, "Gudang 65"));
-            inputItemPage = new Pages.InputItemPage(warehouseLocation);
+            inputItemPage = new Pages.InputItemPage(dataBaseManager.GetOwnedLocation());
         }
         private void SettupButtonData()
         {
@@ -84,10 +84,11 @@ namespace DBSA2._0
 
         private void testBtnClicked(object sender, RoutedEventArgs e)
         {
-            uint test = (uint)warehouseLocation.Count - 1;
-            ClassLibrary.Location newLocation = new ClassLibrary.Location(test, "Temporary" + (warehouseLocation.Count-1).ToString());
-            warehouseLocation.Add(newLocation);
-            inputItemPage.UpdateWarehouseLocations();
+
+            //uint test = (uint)warehouseLocation.Count - 1;
+            //ClassLibrary.Location newLocation = new ClassLibrary.Location(test, "Temporary" + (warehouseLocation.Count-1).ToString());
+            //warehouseLocation.Add(newLocation);
+            //inputItemPage.UpdateWarehouseLocations();
         }
     }
 }

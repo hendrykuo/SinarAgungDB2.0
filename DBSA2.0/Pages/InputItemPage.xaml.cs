@@ -37,6 +37,7 @@ namespace DBSA2._0.Pages
             {
                 ClassLibrary.Location newLocation = warehouseLocations[locationsDisplayed];
                 itemLocationListBox.Items.Add(newLocation);
+
             }
         }
     }
