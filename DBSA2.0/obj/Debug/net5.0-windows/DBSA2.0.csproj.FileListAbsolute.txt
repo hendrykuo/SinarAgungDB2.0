@@ -50,7 +50,6 @@ D:\Github Project\SADBGit\SADBGit\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.pdb
 D:\Github Project\SADBGit\SADBGit\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.genruntimeconfig.cache
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\MainWindow.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Pages\InputItemPage.g.cs
-D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Pages\UtilityPage.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Temporary.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\App.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0_MarkupCompile.cache
@@ -66,7 +65,6 @@ D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\bin\Debug\net5.0-windows\DBSA2
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\App.baml
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\MainWindow.baml
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Pages\InputItemPage.baml
-D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Pages\UtilityPage.baml
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Temporary.baml
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.g.resources
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.GeneratedMSBuildEditorConfig.editorconfig

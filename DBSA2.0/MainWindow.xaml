@@ -11,12 +11,12 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0"
+        <Grid x:Name="buttonsGrid" Grid.Column="0"
               Background="{StaticResource menuBGColor}">
             <StackPanel Orientation="Vertical" VerticalAlignment="Top">
                 <Button x:Name="inputItemBtn"
                         Margin="5, 5, 5, 5"
-                        Click="inputItemButtonClicked"
+                        Click="InputItemButtonClicked"
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">
@@ -27,7 +27,7 @@
                 </Button>
                 <Button x:Name="registerItemBtn"
                         Margin="5, 5, 5, 5"
-                        Click="registerItemButtonClicked"
+                        Click="RegisterItemButtonClicked"
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">
@@ -38,7 +38,7 @@
                 </Button>
                 <Button x:Name="checkItemBtn"
                         Margin="5, 5, 5, 5"
-                        Click="checkItemButtonClicked"
+                        Click="CheckItemButtonClicked"
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">
@@ -47,13 +47,35 @@
                                 TextAlignment="Center"
                                FontSize="14"/>
                 </Button>
-                <Button x:Name="utilityBtn" 
+                <Button x:Name="AddOwnLocationBtn" 
                         Margin="5, 5, 5, 5"
-                        Click="utilityButtonClicked"
+                        Click="AddOwnLocationClicked"
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">
-                    <TextBlock Text="Utilitas"
+                    <TextBlock Text="Tambah Gudang"
+                               TextWrapping="Wrap"
+                                TextAlignment="Center"
+                               FontSize="14"/>
+                </Button>
+                <Button x:Name="AddCustomerBtn" 
+                        Margin="5, 5, 5, 5"
+                        Click="AddCustomerBtnClick"
+                        Foreground="GhostWhite"
+                        Background ="{StaticResource menuBGColor}"
+                        BorderBrush="{StaticResource menuBGColor}">
+                    <TextBlock Text="Tambah Gudang"
+                               TextWrapping="Wrap"
+                                TextAlignment="Center"
+                               FontSize="14"/>
+                </Button>
+                <Button x:Name="AddItemType" 
+                        Margin="5, 5, 5, 5"
+                        Click="AddItemTypeBtnClick"
+                        Foreground="GhostWhite"
+                        Background ="{StaticResource menuBGColor}"
+                        BorderBrush="{StaticResource menuBGColor}">
+                    <TextBlock Text="Tambah Jenis Barang"
                                TextWrapping="Wrap"
                                 TextAlignment="Center"
                                FontSize="14"/>

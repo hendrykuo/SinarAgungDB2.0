@@ -9,43 +9,44 @@ namespace DBSA2._0.ClassLibrary
 {
     class DataBaseManager
     {
-        SQLiteConnection connection;
-        List<ClassLibrary.Location> locations;
-
+        const string dbName = "programDB.db";
         public DataBaseManager()
         {
-            connection = new SQLiteConnection("programDB.db");
-            locations = new List<Location>();
-            connection.CreateTable<ClassLibrary.Location>();
-            //InitialLocationSettup();
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            { 
+                connection.CreateTable<ClassLibrary.OwnLocations>();
+                InitialLocationSettup();
+            }
         }
         public void InitialLocationSettup()
         {
-            AddNewLocation(new Location() { index = 1, location = "Gudang Margo", IsOwnedLocation = true }) ;
-            AddNewLocation(new Location() { index = 2, location = "Gudang 65", IsOwnedLocation = true });
+            AddNewOwnedLocation(new OwnLocations() { location = "Gudang Margo"}) ;
+            AddNewOwnedLocation(new OwnLocations() { location = "Gudang 65"});
         }
-        public int AddNewLocation(Location location)
+        public int AddNewOwnedLocation(OwnLocations location)
         {
-            int result = connection.Insert(location);
-            return result;
-        }
-        private List<Location> GetAllLocation()
-        {
-            List<Location> locations = connection.Table<Location>().ToList();
-            return locations;
-        }
-        public List<Location> GetOwnedLocation()
-        {
-            List<Location> locations = GetAllLocation();
-            List<Location> ownedLocations = new List<Location>();
-            foreach (var location in locations)
+            int result = int.MinValue;
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
             {
-                if (location.IsOwnedLocation)
+                try
                 {
-                    ownedLocations.Add(location);
+                    result = connection.Insert(location);
+                }
+                catch (Exception e)
+                {
+                    string exp = e.Message.ToString();
                 }
             }
-            return ownedLocations;
+            return result;
+        }
+        public List<OwnLocations> GetOwnedLocation()
+        {
+            List<OwnLocations> locations = null;
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                locations = connection.Table<OwnLocations>().ToList();
+            }
+            return locations;
         }
     }
 }

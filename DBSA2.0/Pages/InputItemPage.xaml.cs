@@ -20,8 +20,8 @@ namespace DBSA2._0.Pages
     /// </summary>
     public partial class InputItemPage : Page
     {
-        List<ClassLibrary.Location> warehouseLocations;
-        public InputItemPage(List<ClassLibrary.Location> warehouseLocations)
+        List<ClassLibrary.OwnLocations> warehouseLocations;
+        public InputItemPage(List<ClassLibrary.OwnLocations> warehouseLocations)
         {
             InitializeComponent();
             this.warehouseLocations = warehouseLocations;
@@ -35,7 +35,7 @@ namespace DBSA2._0.Pages
             int locationInDataBase = warehouseLocations.Count;
             if (locationsDisplayed < locationInDataBase)
             {
-                ClassLibrary.Location newLocation = warehouseLocations[locationsDisplayed];
+                ClassLibrary.OwnLocations newLocation = warehouseLocations[locationsDisplayed];
                 itemLocationListBox.Items.Add(newLocation);
 
             }

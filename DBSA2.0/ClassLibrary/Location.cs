@@ -7,22 +7,17 @@ using SQLite;
 
 namespace DBSA2._0.ClassLibrary
 {
-    [Table("Location")]
-    public class Location
+    [Table("OwnLocations")]
+    public class OwnLocations
     {
-        [PrimaryKey, Column("index")]
+        [PrimaryKey, NotNull, AutoIncrement, Column("index")]
         public uint index
         {
             get;
             set;
         }
-        [MaxLength(128), Unique]
+        [MaxLength(128), NotNull, Unique]
         public string location
-        {
-            get;
-            set;
-        }
-        public bool IsOwnedLocation
         {
             get;
             set;

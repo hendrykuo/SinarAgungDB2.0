@@ -22,8 +22,6 @@ namespace DBSA2._0
     public partial class MainWindow : Window
     {
         ClassLibrary.DataBaseManager dataBaseManager;
-        
-        List<ClassLibrary.Location> warehouseLocations;
 
         Pages.InputItemPage inputItemPage;
         Button disabledButton = null;
@@ -39,15 +37,7 @@ namespace DBSA2._0
         {
             inputItemPage = new Pages.InputItemPage(dataBaseManager.GetOwnedLocation());
         }
-        private void SettupButtonData()
-        {
-            int numOfButton = 4;
-            buttons = new Button[numOfButton];
-            buttons[0] = inputItemBtn;
-            buttons[1] = registerItemBtn;
-            buttons[2] = checkItemBtn;
-            buttons[3] = utilityBtn;
-        }
+
         void ToggleButton(Button button)
         {
             if (disabledButton != null)
@@ -57,38 +47,47 @@ namespace DBSA2._0
             button.IsEnabled = false;
             disabledButton = button;
         }
-        private void inputItemButtonClicked(object sender, RoutedEventArgs e)
+        private void InputItemButtonClicked(object sender, RoutedEventArgs e)
         {
-            ToggleButton(sender as Button);
+            //ToggleButton(sender as Button);
             programMainFrame.Content = inputItemPage;
         }
 
-        private void registerItemButtonClicked(object sender, RoutedEventArgs e)
+        private void RegisterItemButtonClicked(object sender, RoutedEventArgs e)
         {
-            ToggleButton(sender as Button);
+            //ToggleButton(sender as Button);
             programMainFrame.Content = new Temporary("Register Item Page");
         }
 
-        private void checkItemButtonClicked(object sender, RoutedEventArgs e)
+        private void CheckItemButtonClicked(object sender, RoutedEventArgs e)
         {
-            ToggleButton(sender as Button);
+            //ToggleButton(sender as Button);
             programMainFrame.Content = new Temporary("Check Item Item Page");
         }
-
-        private void utilityButtonClicked(object sender, RoutedEventArgs e)
+        private void AddOwnLocationClicked(object sender, RoutedEventArgs e)
         {
-            ToggleButton(sender as Button);
-            programMainFrame.Content = new Temporary("Utility Item Page");
+            programMainFrame.Content = new Temporary("Add Location Item Page");
         }
 
+        private void AddCustomerBtnClick(object sender, RoutedEventArgs e)
+        {
+            programMainFrame.Content = new Temporary("Add Customer Item Page");
+        }
+
+        private void AddItemTypeBtnClick(object sender, RoutedEventArgs e)
+        {
+            programMainFrame.Content = new Temporary("Add Item Item Page");
+        }
 
         private void testBtnClicked(object sender, RoutedEventArgs e)
         {
-
+            programMainFrame.Content = new Temporary("Check Item Item Page");
             //uint test = (uint)warehouseLocation.Count - 1;
             //ClassLibrary.Location newLocation = new ClassLibrary.Location(test, "Temporary" + (warehouseLocation.Count-1).ToString());
             //warehouseLocation.Add(newLocation);
             //inputItemPage.UpdateWarehouseLocations();
         }
+
+        
     }
 }
