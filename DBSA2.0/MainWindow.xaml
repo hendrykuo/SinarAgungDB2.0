@@ -53,7 +53,7 @@
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">
-                    <TextBlock Text="Tambah Gudang"
+                    <TextBlock Text="Gudang"
                                TextWrapping="Wrap"
                                 TextAlignment="Center"
                                FontSize="14"/>
@@ -64,7 +64,7 @@
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">
-                    <TextBlock Text="Tambah Gudang"
+                    <TextBlock Text="Tambah Customer"
                                TextWrapping="Wrap"
                                 TextAlignment="Center"
                                FontSize="14"/>

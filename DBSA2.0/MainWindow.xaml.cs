@@ -66,7 +66,7 @@ namespace DBSA2._0
         }
         private void AddOwnLocationClicked(object sender, RoutedEventArgs e)
         {
-            programMainFrame.Content = new Temporary("Add Location Item Page");
+            programMainFrame.Content = new Pages.WareHousePage();
         }
 
         private void AddCustomerBtnClick(object sender, RoutedEventArgs e)

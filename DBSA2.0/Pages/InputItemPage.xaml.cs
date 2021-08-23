@@ -25,8 +25,10 @@ namespace DBSA2._0.Pages
         {
             InitializeComponent();
             this.warehouseLocations = warehouseLocations;
-            itemLocationListBox.Items.Add(warehouseLocations[0]);
-            itemLocationListBox.Items.Add(warehouseLocations[1]);
+            foreach (ClassLibrary.OwnLocations location in warehouseLocations)
+            {
+                itemLocationListBox.Items.Add(location);
+            }
         }
         public void UpdateWarehouseLocations()
         {
@@ -35,6 +37,7 @@ namespace DBSA2._0.Pages
             int locationInDataBase = warehouseLocations.Count;
             if (locationsDisplayed < locationInDataBase)
             {
+                
                 ClassLibrary.OwnLocations newLocation = warehouseLocations[locationsDisplayed];
                 itemLocationListBox.Items.Add(newLocation);
 

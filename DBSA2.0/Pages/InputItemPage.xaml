@@ -93,7 +93,7 @@
                         <GridView>
                             <GridViewColumn Header="No"                                    
                                             Width="50"
-                                            DisplayMemberBinding="{Binding index}"/>
+                                            DisplayMemberBinding="{Binding _index}"/>
                             <GridViewColumn Header="Nama Lokasi"
                                             Width="190"
                                             DisplayMemberBinding="{Binding location}"/>
