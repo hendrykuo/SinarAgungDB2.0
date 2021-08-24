@@ -13,8 +13,10 @@ namespace DBSA2._0.ClassLibrary
         public DataBaseManager()
         {
             using (SQLiteConnection connection = new SQLiteConnection(dbName))
-            { 
+            {
+                connection.CreateTable();
                 connection.CreateTable<ClassLibrary.OwnLocations>();
+                connection.CreateTable<ClassLibrary.Customer>();
             }
             InitialLocationSettup();
             ReorderOwnedLocationIndex();
@@ -71,6 +73,16 @@ namespace DBSA2._0.ClassLibrary
                     connection.InsertOrReplace(locs[i]);
                 }
             }
+        }
+
+        public List<CustomerUI> GetCustomerList()
+        {
+            List<CustomerUI> customerUIs = null;
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                
+            }
+            return customerUIs;
         }
     }
 }

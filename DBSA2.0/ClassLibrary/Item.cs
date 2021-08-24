@@ -10,7 +10,7 @@ namespace DBSA2._0.ClassLibrary
     public class Item
     {
         [PrimaryKey, NotNull, AutoIncrement,]
-        public uint index
+        public uint itemID
         {
             get;
             set;

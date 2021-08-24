@@ -95,3 +95,5 @@ D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\bin\Debug\net5.0-windows\runti
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.csproj.CopyComplete
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Pages\WareHousePage.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Pages\WareHousePage.baml
+D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Pages\AddCustomerPage.g.cs
+D:\Github Project\SADBGit\SinarAgungDB2.0\DBSA2.0\obj\Debug\net5.0-windows\Pages\AddCustomerPage.baml
