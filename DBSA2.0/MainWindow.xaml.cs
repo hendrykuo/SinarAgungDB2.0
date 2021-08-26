@@ -37,7 +37,7 @@ namespace DBSA2._0
         private void SettupPages()
         {
             inputItemPage = new Pages.InputItemPage(dataBaseManager.GetOwnedLocation());
-            addCustomerPage = new Pages.AddCustomerPage();
+            addCustomerPage = new Pages.AddCustomerPage(dataBaseManager);
         }
 
         void ToggleButton(Button button)
@@ -68,7 +68,7 @@ namespace DBSA2._0
         }
         private void AddOwnLocationClicked(object sender, RoutedEventArgs e)
         {
-            programMainFrame.Content = new Pages.WareHousePage();
+            programMainFrame.Content = new Pages.WareHousePage(dataBaseManager);
         }
 
         private void AddCustomerBtnClick(object sender, RoutedEventArgs e)
@@ -86,10 +86,6 @@ namespace DBSA2._0
         private void testBtnClicked(object sender, RoutedEventArgs e)
         {
             programMainFrame.Content = new Temporary("Check Item Item Page");
-            //uint test = (uint)warehouseLocation.Count - 1;
-            //ClassLibrary.Location newLocation = new ClassLibrary.Location(test, "Temporary" + (warehouseLocation.Count-1).ToString());
-            //warehouseLocation.Add(newLocation);
-            //inputItemPage.UpdateWarehouseLocations();
         }
 
         

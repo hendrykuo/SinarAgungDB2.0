@@ -10,12 +10,7 @@ namespace DBSA2._0.ClassLibrary
     [Table("OwnLocations")]
     public class OwnLocations
     {
-        public uint index
-        {
-            get;
-            set;
-        }
-        [MaxLength(128), NotNull, Unique]
+        [MaxLength(128), NotNull, Unique, PrimaryKey]
         public string location
         {
             get;

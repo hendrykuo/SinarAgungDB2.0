@@ -18,12 +18,13 @@
             Fill="{StaticResource menuBGColor}"/>
         <Label Grid.Row="0"
                Style="{StaticResource pageNameLabelStyle}"
-               Content="Tambah Gudang"/>
+               Content="Gudang"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"
                    Style="{StaticResource contentLabelStyle}"
@@ -31,12 +32,40 @@
             <TextBox Grid.Column="1"
                      Style="{StaticResource textBoxStyle}"
                      Margin="5,5,5,5"
-                     Name="localLocationTextBlock"/>
+                     Name="wareHouseNameTextBox"/>
             <Button x:Name="saveButton"
                     Grid.Column="2"
                     Style="{StaticResource buttonStyle}"
                     Margin="5,5,5,5"
-                    Content="Simpan"/>
+                    Content="Simpan"
+                    Click="SaveButton_Click"/>
+            <Button x:Name="deleteButton"
+                    Grid.Column="3"
+                    Style="{StaticResource buttonStyle}"
+                    Margin="5,5,5,5"
+                    Click="DeleteButton_Click"
+                    Content="Hapus"/>
         </Grid>
+        <ListView Grid.Row="2"
+                  Margin="5,5,5,5"
+                  Width="auto"
+                  x:Name="listView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="listViewNoColumn"
+                                    Header="No"
+                                    Width="100"
+                                    DisplayMemberBinding="{Binding index}"/>
+                    <GridViewColumn x:Name="listViewNameColumn" 
+                                    Header="Name"
+                                    Width="300"
+                                    DisplayMemberBinding="{Binding name}"/>
+                    <GridViewColumn x:Name="listviewMessageColumn"
+                                    Header="Pesan"
+                                    Width="385"
+                                    DisplayMemberBinding="{Binding message}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

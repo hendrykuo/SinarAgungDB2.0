@@ -14,7 +14,6 @@ namespace DBSA2._0.ClassLibrary
         {
             get;
             set;
-        
         }
     }
 }

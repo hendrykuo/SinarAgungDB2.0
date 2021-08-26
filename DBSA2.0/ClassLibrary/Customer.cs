@@ -7,23 +7,10 @@ using SQLite;
 namespace DBSA2._0.ClassLibrary
 {
     [Table("Customer")]
-    class Customer
+    public class Customer
     {
-        [Unique, PrimaryKey]
+        [Unique, NotNull, PrimaryKey]
         public string name
-        {
-            get;
-            set;
-        }
-    }
-    class CustomerUI
-    { 
-        public string name
-        {
-            get;
-            set;
-        }
-        public uint index
         {
             get;
             set;

@@ -64,7 +64,7 @@
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">
-                    <TextBlock Text="Tambah Customer"
+                    <TextBlock Text="Customer"
                                TextWrapping="Wrap"
                                 TextAlignment="Center"
                                FontSize="14"/>

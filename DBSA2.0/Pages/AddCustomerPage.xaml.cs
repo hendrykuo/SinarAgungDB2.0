@@ -20,11 +20,13 @@ namespace DBSA2._0.Pages
     /// </summary>
     public partial class AddCustomerPage : Page
     {
+        ClassLibrary.DataBaseManager dataBaseManager = null;
         const double listViewAspectRatio = 1.0d / 5.0d;
-        public AddCustomerPage()
+        public AddCustomerPage(ClassLibrary.DataBaseManager dataBaseManager)
         {
             InitializeComponent();
-        
+            this.dataBaseManager = dataBaseManager;
+            dataBaseManager.GetCustomerList();
         }
         private void SettupListViewColumnWidth()
         {
@@ -38,6 +40,32 @@ namespace DBSA2._0.Pages
             this.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             this.Arrange(new Rect(0, 0, this.DesiredSize.Width, this.DesiredSize.Height));
             SettupListViewColumnWidth();
+        }
+
+        private void saveButtonClick(object sender, RoutedEventArgs e)
+        {
+            string customerName = customerNameTextBox.Text;
+            if (!string.IsNullOrEmpty(customerName))
+            {
+                ClassLibrary.Customer customer = new ClassLibrary.Customer() { name = customerName };
+                string errorMessage = string.Empty;
+                dataBaseManager.AddCustomer(customer, ref errorMessage);
+                uint index = (uint)listView.Items.Count + 1;
+                ClassLibrary.ListViewDisplayContent customerUI = new ClassLibrary.ListViewDisplayContent(index, customerName, errorMessage);
+                listView.Items.Add(customerUI);
+            }
+        }
+
+        private void deleteButtonClick(object sender, RoutedEventArgs e)
+        {
+            string customerName = customerNameTextBox.Text;
+            if (!string.IsNullOrEmpty(customerName))
+            {
+                string message = string.Empty;
+                dataBaseManager.DeleteCustomer(customerName, ref message);
+                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent((uint)listView.Items.Count+1, customerName, message);
+                listView.Items.Add(listViewDisplayContent);
+            }
         }
     }
 }
