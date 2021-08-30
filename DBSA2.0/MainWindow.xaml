@@ -69,13 +69,13 @@
                                 TextAlignment="Center"
                                FontSize="14"/>
                 </Button>
-                <Button x:Name="AddItemType" 
+                <Button x:Name="itemPageButton" 
                         Margin="5, 5, 5, 5"
-                        Click="AddItemTypeBtnClick"
+                        Click="itemPageButtonClick"
                         Foreground="GhostWhite"
                         Background ="{StaticResource menuBGColor}"
                         BorderBrush="{StaticResource menuBGColor}">
-                    <TextBlock Text="Tambah Jenis Barang"
+                    <TextBlock Text="Barang"
                                TextWrapping="Wrap"
                                 TextAlignment="Center"
                                FontSize="14"/>

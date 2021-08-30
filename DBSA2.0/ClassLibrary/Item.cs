@@ -9,8 +9,14 @@ namespace DBSA2._0.ClassLibrary
     [Table("Item")]
     public class Item
     {
-        [PrimaryKey, NotNull, AutoIncrement,]
-        public uint itemID
+        [PrimaryKey, NotNull]
+        public string itemName
+        {
+            get;
+            set;
+        }
+        [NotNull]
+        public int characterLength
         {
             get;
             set;

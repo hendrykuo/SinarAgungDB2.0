@@ -26,7 +26,7 @@ namespace DBSA2._0.Pages
         {
             InitializeComponent();
             this.dataBaseManager = dataBaseManager;
-            dataBaseManager.GetCustomerList();
+            //dataBaseManager.GetCustomerList();
         }
         private void SettupListViewColumnWidth()
         {
@@ -50,7 +50,7 @@ namespace DBSA2._0.Pages
                 ClassLibrary.Customer customer = new ClassLibrary.Customer() { name = customerName };
                 string errorMessage = string.Empty;
                 dataBaseManager.AddCustomer(customer, ref errorMessage);
-                uint index = (uint)listView.Items.Count + 1;
+                int index = listView.Items.Count + 1;
                 ClassLibrary.ListViewDisplayContent customerUI = new ClassLibrary.ListViewDisplayContent(index, customerName, errorMessage);
                 listView.Items.Add(customerUI);
             }
@@ -63,7 +63,7 @@ namespace DBSA2._0.Pages
             {
                 string message = string.Empty;
                 dataBaseManager.DeleteCustomer(customerName, ref message);
-                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent((uint)listView.Items.Count+1, customerName, message);
+                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(listView.Items.Count+1, customerName, message);
                 listView.Items.Add(listViewDisplayContent);
             }
         }

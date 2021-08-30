@@ -74,10 +74,10 @@
                         <GridView>
                             <GridViewColumn Header="No"
                                             Width="50"
-                                            DisplayMemberBinding="{Binding Index}"/>
+                                            DisplayMemberBinding="{Binding index}"/>
                             <GridViewColumn Header="Nama Barang"
                                             Width="190"
-                                            DisplayMemberBinding="{Binding ItemName}"/>
+                                            DisplayMemberBinding="{Binding name}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -93,10 +93,10 @@
                         <GridView>
                             <GridViewColumn Header="No"                                    
                                             Width="50"
-                                            DisplayMemberBinding="{Binding _index}"/>
+                                            DisplayMemberBinding="{Binding index}"/>
                             <GridViewColumn Header="Nama Lokasi"
                                             Width="190"
-                                            DisplayMemberBinding="{Binding location}"/>
+                                            DisplayMemberBinding="{Binding name}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

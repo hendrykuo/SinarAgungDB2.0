@@ -35,7 +35,7 @@ namespace DBSA2._0.Pages
                 string message = string.Empty;
                 ClassLibrary.OwnLocations ownLocations = new ClassLibrary.OwnLocations() { location = warehouseName };
                 dataBaseManager.AddOwnedLocation(ownLocations, ref message);
-                uint index = (uint)listView.Items.Count + 1;
+                int index = listView.Items.Count + 1;
                 ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, warehouseName, message);
                 listView.Items.Add(displayContent);
                 wareHouseNameTextBox.Text = string.Empty;
@@ -49,7 +49,7 @@ namespace DBSA2._0.Pages
             {
                 string message = string.Empty;
                 dataBaseManager.DeleteOwnedLocation(warehouseName, ref message);
-                uint index = (uint)listView.Items.Count + 1;
+                int index = listView.Items.Count + 1;
                 ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, warehouseName, message);
                 listView.Items.Add(displayContent);
             }

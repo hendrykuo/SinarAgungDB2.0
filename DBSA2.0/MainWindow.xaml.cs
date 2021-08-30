@@ -25,6 +25,7 @@ namespace DBSA2._0
 
         Pages.InputItemPage inputItemPage;
         Pages.AddCustomerPage addCustomerPage;
+        Pages.ItemPage itemPage;
         Button disabledButton = null;
         Button[] buttons;
         public MainWindow()
@@ -36,8 +37,9 @@ namespace DBSA2._0
         }
         private void SettupPages()
         {
-            inputItemPage = new Pages.InputItemPage(dataBaseManager.GetOwnedLocation());
+            inputItemPage = new Pages.InputItemPage(dataBaseManager);
             addCustomerPage = new Pages.AddCustomerPage(dataBaseManager);
+            itemPage = new Pages.ItemPage(dataBaseManager);
         }
 
         void ToggleButton(Button button)
@@ -51,8 +53,8 @@ namespace DBSA2._0
         }
         private void InputItemButtonClicked(object sender, RoutedEventArgs e)
         {
-            //ToggleButton(sender as Button);
             programMainFrame.Content = inputItemPage;
+            inputItemPage.UpdateUI();
         }
 
         private void RegisterItemButtonClicked(object sender, RoutedEventArgs e)
@@ -78,9 +80,9 @@ namespace DBSA2._0
             
         }
 
-        private void AddItemTypeBtnClick(object sender, RoutedEventArgs e)
+        private void itemPageButtonClick(object sender, RoutedEventArgs e)
         {
-            programMainFrame.Content = new Temporary("Add Item Item Page");
+            programMainFrame.Content = itemPage;
         }
 
         private void testBtnClicked(object sender, RoutedEventArgs e)

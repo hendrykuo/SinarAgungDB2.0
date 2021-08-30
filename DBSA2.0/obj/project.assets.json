@@ -246,11 +246,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0\\DBSA2.0\\DBSA2.0.csproj",
+      "projectUniqueName": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0Backup00\\DBSA2.0\\DBSA2.0.csproj",
       "projectName": "DBSA2.0",
-      "projectPath": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0\\DBSA2.0\\DBSA2.0.csproj",
+      "projectPath": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0Backup00\\DBSA2.0\\DBSA2.0.csproj",
       "packagesPath": "C:\\Users\\hendry kuo\\.nuget\\packages\\",
-      "outputPath": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0\\DBSA2.0\\obj\\",
+      "outputPath": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0Backup00\\DBSA2.0\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

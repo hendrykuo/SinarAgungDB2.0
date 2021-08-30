@@ -10,25 +10,113 @@ namespace DBSA2._0.ClassLibrary
     public class DataBaseManager
     {
         const string dbName = "programDB.db";
+        //local stuff
+        List<Item> items = new List<Item>();
+        public List<Item> ItemListView
+        {
+            get
+            {
+                UpdateItem();
+                return items;
+            }
+            
+        }
+        List<OwnLocations> ownLocations = new List<OwnLocations>();
+        public List<OwnLocations> OwnLocationList
+        {
+            get
+            {
+                UpdateOwnedLocation();
+                return ownLocations;
+            }
+        }
         public DataBaseManager()
         {
             using (SQLiteConnection connection = new SQLiteConnection(dbName))
             {
+                
                 connection.CreateTable<ClassLibrary.OwnLocations>();
                 connection.CreateTable<ClassLibrary.Customer>();
+                connection.CreateTable<ClassLibrary.Item>();
+                UpdateItem();
             }
-            //InitialLocationSettup();
-            //ReorderOwnedLocationIndex();
         }
 
-        //public void InitialLocationSettup()
-        //{
-        //    //error message is not handled here because it is only for example
-        //    string errMessage = string.Empty;
-        //    AddNewOwnedLocation(new OwnLocations() { location = "Gudang 65"}, ref errMessage);
-        //    AddNewOwnedLocation(new OwnLocations() { location = "Gudang Margo"}, ref errMessage) ;
-        //}
-
+        //item
+        public int AddItem(Item item, ref string message)
+        {
+            int result = int.MinValue;
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                try
+                {
+                    result = connection.Insert(item);
+                    message = "sukses";
+                    UpdateItem();
+                }
+                catch (SQLite.SQLiteException e)
+                {
+                    message = "Gagal: " + e.Message;
+                }
+                catch (Exception e)
+                {
+                    message = "Gagal: " + e.Message;
+                }
+            }
+            return result;
+        }
+        public int DeleteItem(Item item, ref string message)
+        {
+            int result = int.MinValue;
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                try
+                {
+                    result = connection.Delete<Item>(item);
+                    message = "Sukses";
+                    UpdateItem();
+                }
+                catch (SQLiteException e)
+                {
+                    message = "Gagal: " + e.Message;
+                }
+                catch (Exception e)
+                {
+                    message = "Gagal: " + e.Message;
+                }
+            }
+            return result;
+        }
+        public int DeleteItem(string itemName, ref string message)
+        {
+            int result = int.MinValue;
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                try
+                {
+                    result = connection.Delete<Item>(itemName);
+                    message = "Sukses";
+                }
+                catch (SQLiteException e)
+                {
+                    message = "Gagal: " + e.Message;
+                }
+                catch (Exception e)
+                {
+                    message = "Gagal: " + e.Message;
+                }
+            }
+            return result;
+        }
+        protected void UpdateItem()
+        {
+            items.Clear();
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                items = connection.Table<Item>().ToList();
+            }
+        }
+        
         //location
         public int AddOwnedLocation(OwnLocations location, ref string message)
         {
@@ -63,15 +151,15 @@ namespace DBSA2._0.ClassLibrary
             }
             return result;
         }
-        public List<OwnLocations> GetOwnedLocation()
+        protected void UpdateOwnedLocation()
         {
-            List<OwnLocations> locations = null;
+            ownLocations.Clear();
             using (SQLiteConnection connection = new SQLiteConnection(dbName))
             {
-                locations = connection.Table<OwnLocations>().ToList();
+                ownLocations = connection.Table<OwnLocations>().ToList();
             }
-            return locations;
         }
+        
         public void DeleteOwnedLocation(string warehouseName, ref string message)
         {
             message = string.Empty;
@@ -92,19 +180,6 @@ namespace DBSA2._0.ClassLibrary
                 }
             }
         }
-        //public void ReorderOwnedLocationIndex()
-        //{
-        //    using (SQLiteConnection connection = new SQLiteConnection(dbName))
-        //    {
-        //        List<OwnLocations> locs = connection.Table<OwnLocations>().ToList();
-        //        for (int i = 0; i < locs.Count; i++)
-        //        {
-        //            locs[i].index = (uint)i + 1;
-        //            connection.InsertOrReplace(locs[i]);
-        //        }
-        //    }
-        //}
-        //customer stuff
         public int AddCustomer(Customer customer, ref string message)
         {
             int result = int.MinValue;
@@ -137,19 +212,7 @@ namespace DBSA2._0.ClassLibrary
             }
             return result;
         }
-        public List<ListViewDisplayContent> GetCustomerList()
-        {
-            List<ListViewDisplayContent> customerUIs = new List<ListViewDisplayContent>();
-            using (SQLiteConnection connection = new SQLiteConnection(dbName))
-            {
-                List<Customer> customers = connection.Table<Customer>().ToList();
-                for (int i = 0; i < customers.Count; i++)
-                {
-                    ListViewDisplayContent customerUI = new ListViewDisplayContent((uint)i + 1,customers[i].name);
-                }
-            }
-            return customerUIs;
-        }
+        
         public void DeleteCustomer(string customerName, ref string message)
         {
             using (SQLiteConnection connection = new SQLiteConnection(dbName))

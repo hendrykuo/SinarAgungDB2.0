@@ -20,27 +20,27 @@ namespace DBSA2._0.Pages
     /// </summary>
     public partial class InputItemPage : Page
     {
-        List<ClassLibrary.OwnLocations> warehouseLocations;
-        public InputItemPage(List<ClassLibrary.OwnLocations> warehouseLocations)
+        ClassLibrary.DataBaseManager dataBaseManager;
+        public InputItemPage(ClassLibrary.DataBaseManager databaseManager)
         {
             InitializeComponent();
-            this.warehouseLocations = warehouseLocations;
-            foreach (ClassLibrary.OwnLocations location in warehouseLocations)
-            {
-                itemLocationListBox.Items.Add(location);
-            }
+            this.dataBaseManager = databaseManager;
         }
-        public void UpdateWarehouseLocations()
+        public void UpdateUI()
         {
-
-            int locationsDisplayed = itemLocationListBox.Items.Count;
-            int locationInDataBase = warehouseLocations.Count;
-            if (locationsDisplayed < locationInDataBase)
+            itemNameListBox.Items.Clear();
+            List<ClassLibrary.Item> items = dataBaseManager.ItemListView;
+            for (int i = 0; i < items.Count; i++)
             {
-                
-                ClassLibrary.OwnLocations newLocation = warehouseLocations[locationsDisplayed];
-                itemLocationListBox.Items.Add(newLocation);
-
+                ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(i+1 , items[i].itemName);
+                itemNameListBox.Items.Add(content);
+            }
+            itemLocationListBox.Items.Clear();
+            List<ClassLibrary.OwnLocations> ownLocations = dataBaseManager.OwnLocationList;
+            for (int i = 0; i < ownLocations.Count; i++)
+            {
+                ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(i+1, ownLocations[i].location);
+                itemLocationListBox.Items.Add(content);
             }
         }
     }
