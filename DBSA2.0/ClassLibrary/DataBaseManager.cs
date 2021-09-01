@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+
 //using SQLitePCL;
 namespace DBSA2._0.ClassLibrary
 {
@@ -19,7 +20,7 @@ namespace DBSA2._0.ClassLibrary
                 UpdateItem();
                 return items;
             }
-            
+
         }
         List<OwnLocations> ownLocations = new List<OwnLocations>();
         public List<OwnLocations> OwnLocationList
@@ -34,14 +35,80 @@ namespace DBSA2._0.ClassLibrary
         {
             using (SQLiteConnection connection = new SQLiteConnection(dbName))
             {
-                
+
                 connection.CreateTable<ClassLibrary.OwnLocations>();
                 connection.CreateTable<ClassLibrary.Customer>();
                 connection.CreateTable<ClassLibrary.Item>();
-                UpdateItem();
+                items = ItemListView;
+                /*
+                 CREATE TABLE IF NOT EXISTS babi(
+	name TEXT PRIMARY KEY NOT NULL,
+	date Text NOT NULL);
+                 */
+                for (int i = 0; i < items.Count; i++)
+                {
+                    SQLiteCommand command;
+                    string commandString = CreateTableIfNotExistString(items[i]);
+                    command = connection.CreateCommand(commandString);
+                    command.ExecuteNonQuery();
+                }
+                //UpdateItem();
             }
         }
-
+        public bool AddItem(string barcode, string name, string location, ref string message)
+        {
+            items = ItemListView;
+            Item selected = null;
+            bool isSucces = false;
+            foreach (var item in items)
+            {
+                if (item.itemName == name)
+                {
+                    selected = item;
+                    break;
+                }
+            }
+            if (selected != null)
+            {
+                if (barcode.Length == selected.characterLength)
+                {
+                    using (SQLiteConnection connection = new SQLiteConnection(dbName))
+                    {
+                        SQLiteCommand command;
+                        ItemData data = new ItemData();
+                        data.barcode = barcode;
+                        data.location = location;
+                        data.time = DateTime.Now.ToString();
+                        string commandString = InsertOrReplaceIntoString(name, data);
+                        command = connection.CreateCommand(commandString);
+                        command.ExecuteNonQuery();
+                        message = "Sukses";
+                        isSucces = true;
+                    }
+                }
+                else
+                {
+                    message = string.Format("Error: panjang id input: {0} panjang id yang di perlukan: {1}", barcode.Length, selected.characterLength);
+                }
+            }
+            else
+            {
+                message = string.Format("Error: Tidak di temukan di database");
+            }
+            return isSucces;
+            
+        }
+        //Barcode Stuff
+        private string CreateTableIfNotExistString(Item item)
+        {
+            string result = string.Format("CREATE TABLE IF NOT EXISTS '{0}'(barcode TEXT PRIMARY KEY NOT NULL, time TEXT NOT NULL, location TEXT NOT NULL);", item.itemName);
+            return result;
+        }
+        private string InsertOrReplaceIntoString(string itemName, ItemData data)
+        {
+            string result = string.Format("INSERT OR REPLACE INTO '{0}'(barcode, time, location) VALUES({1}, {2}, {3})", itemName, data.barcode, data.time, data.location);
+            return result;
+        }
         //item
         public int AddItem(Item item, ref string message)
         {

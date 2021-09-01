@@ -39,7 +39,8 @@
             <Button Grid.Column="1"
                     Margin="10,5,10,5"
                     Style="{StaticResource buttonStyle}"
-                    Content="Daftar"/>
+                    Content="Daftar"
+                    Click="AddItemIntoTable"/>
         </Grid>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>

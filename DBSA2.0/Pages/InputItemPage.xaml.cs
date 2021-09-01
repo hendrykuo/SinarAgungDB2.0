@@ -43,5 +43,13 @@ namespace DBSA2._0.Pages
                 itemLocationListBox.Items.Add(content);
             }
         }
+
+        private void AddItemIntoTable(object sender, RoutedEventArgs e)
+        {
+
+        }
+        //TODO: FORCE TEXT BOX TO ONLY ACCEPT INT
+        //SELECT FROM name, location
+        //shove it into your ass
     }
 }
