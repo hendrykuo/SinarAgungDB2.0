@@ -26,22 +26,32 @@ namespace DBSA2._0.Pages
         {
             InitializeComponent();
             this.dataBaseManager = dataBaseManager;
+            UpdateSavedCustomerListView();
             //dataBaseManager.GetCustomerList();
         }
-        private void SettupListViewColumnWidth()
+        //private void SettupListViewColumnWidth()
+        //{
+        //    double listViewWidth = outputListView.ActualWidth;
+        //    listViewNoColumn.Width = listViewWidth * listViewAspectRatio;
+        //    listViewNameColumn.Width = listViewWidth * 4 * listViewAspectRatio;
+        //}
+        //public void Reset()
+        //{
+        //    //use this to force calculate the window
+        //    this.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+        //    this.Arrange(new Rect(0, 0, this.DesiredSize.Width, this.DesiredSize.Height));
+        //    SettupListViewColumnWidth();
+        //}
+        private void UpdateSavedCustomerListView()
         {
-            double listViewWidth = listView.ActualWidth;
-            listViewNoColumn.Width = listViewWidth * listViewAspectRatio;
-            listViewNameColumn.Width = listViewWidth * 4 * listViewAspectRatio;
+            List<ClassLibrary.Customer> customers = dataBaseManager.CustomersList;
+            savedCustomerListView.Items.Clear();
+            for (int i = 0; i < customers.Count; i++)
+            {
+                ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(i+1, customers[i].name);
+                savedCustomerListView.Items.Add(content);
+            }
         }
-        public void Reset()
-        {
-            //use this to force calculate the window
-            this.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            this.Arrange(new Rect(0, 0, this.DesiredSize.Width, this.DesiredSize.Height));
-            SettupListViewColumnWidth();
-        }
-
         private void saveButtonClick(object sender, RoutedEventArgs e)
         {
             string customerName = customerNameTextBox.Text;
@@ -50,9 +60,10 @@ namespace DBSA2._0.Pages
                 ClassLibrary.Customer customer = new ClassLibrary.Customer() { name = customerName };
                 string errorMessage = string.Empty;
                 dataBaseManager.AddCustomer(customer, ref errorMessage);
-                int index = listView.Items.Count + 1;
+                int index = outputListView.Items.Count + 1;
                 ClassLibrary.ListViewDisplayContent customerUI = new ClassLibrary.ListViewDisplayContent(index, customerName, errorMessage);
-                listView.Items.Add(customerUI);
+                outputListView.Items.Add(customerUI);
+                UpdateSavedCustomerListView();
             }
         }
 
@@ -63,8 +74,9 @@ namespace DBSA2._0.Pages
             {
                 string message = string.Empty;
                 dataBaseManager.DeleteCustomer(customerName, ref message);
-                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(listView.Items.Count+1, customerName, message);
-                listView.Items.Add(listViewDisplayContent);
+                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(outputListView.Items.Count+1, customerName, message);
+                outputListView.Items.Add(listViewDisplayContent);
+                UpdateSavedCustomerListView();
             }
         }
     }

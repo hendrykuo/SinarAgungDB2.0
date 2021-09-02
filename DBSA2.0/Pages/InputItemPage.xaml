@@ -66,7 +66,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
                 <ListView Grid.Row="0"
                           x:Name="itemNameListBox"

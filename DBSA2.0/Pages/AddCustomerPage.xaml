@@ -44,26 +44,47 @@
                     Margin="5,5,5,5"
                     Content="Hapus"/>
         </Grid>
-        <ListView Grid.Row="2"
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Column="0"
                   Margin="5,5,5,5"
                   Width="auto"
-                  x:Name="listView">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn x:Name="listViewNoColumn"
+                  x:Name="outputListView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn x:Name="listViewNoColumn"
                                     Header="No"
                                     Width="100"
                                     DisplayMemberBinding="{Binding index}"/>
-                    <GridViewColumn x:Name="listViewNameColumn" 
-                                    Header="Name"
+                        <GridViewColumn x:Name="listViewNameColumn" 
+                                    Header="Nama"
                                     Width="300"
                                     DisplayMemberBinding="{Binding name}"/>
-                    <GridViewColumn x:Name="listviewMessageColumn"
+                        <GridViewColumn x:Name="listviewMessageColumn"
                                     Header="Pesan"
                                     Width="385"
                                     DisplayMemberBinding="{Binding message}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListView Grid.Column="1"
+                      x:Name="savedCustomerListView"
+                      Margin="5,5,5,5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="No"
+                                        Width="50"
+                                        DisplayMemberBinding ="{Binding index}"/>
+                        <GridViewColumn Header="Nama Customer"
+                                        Width="210"
+                                        DisplayMemberBinding ="{Binding name}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
     </Grid>
 </Page>

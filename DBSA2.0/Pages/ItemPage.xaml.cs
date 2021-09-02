@@ -26,8 +26,19 @@ namespace DBSA2._0.Pages
             InitializeComponent();
             this.dataBaseManager = dataBaseManager;
             DataObject.AddPastingHandler(idLengthTextBox, PasteHandler);
+            UpdateSavedItemListBox();
         }
-
+        private void UpdateSavedItemListBox()
+        {
+            savedItemListBox.Items.Clear();
+            List<ClassLibrary.Item> items = dataBaseManager.ItemList;
+            for (int i = 0; i < items.Count; i++)
+            {
+                string message = items[i].characterLength.ToString();
+                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(i+1, items[i].itemName, message);
+                savedItemListBox.Items.Add(displayContent);
+            }
+        }
         private void saveButtonClick(object sender, RoutedEventArgs e)
         {
             //check if it is empty or not
@@ -42,9 +53,10 @@ namespace DBSA2._0.Pages
                     //save it to db
                     ClassLibrary.Item item = new ClassLibrary.Item() { itemName = itemName, characterLength = idLength };
                     dataBaseManager.AddItem(item, ref message);
-                    int index = listView.Items.Count + 1;
+                    int index = outputListView.Items.Count + 1;
                     ClassLibrary.ListViewDisplayContent listViewItem = new ClassLibrary.ListViewDisplayContent(index, itemName, message);
-                    listView.Items.Add(listViewItem);
+                    outputListView.Items.Add(listViewItem);
+                    UpdateSavedItemListBox();
                 }
             }
             itemNameTextBox.Text = string.Empty;
@@ -54,14 +66,27 @@ namespace DBSA2._0.Pages
         private void deleteButtonClick(object sender, RoutedEventArgs e)
         {
             string itemName = itemNameTextBox.Text;
+            bool isDelete = false;
             if (!string.IsNullOrEmpty(itemName))
             {
+                isDelete = true;
+            }
+            else
+            {
+                itemName = ((ClassLibrary.ListViewDisplayContent)savedItemListBox.SelectedItem).name;
+                isDelete = true;
+            }
+            if (isDelete)
+            { 
                 string message = string.Empty;
                 dataBaseManager.DeleteItem(itemName, ref message);
-                int index = listView.Items.Count + 1;
+                int index = outputListView.Items.Count + 1;
                 ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, itemName, message);
-                listView.Items.Add(listViewDisplayContent);
+                outputListView.Items.Add(listViewDisplayContent);
+                UpdateSavedItemListBox();
             }
+            itemNameTextBox.Text = string.Empty;
+            savedItemListBox.SelectedIndex = -1;
         }
 
 

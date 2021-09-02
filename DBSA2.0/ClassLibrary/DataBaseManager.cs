@@ -13,7 +13,7 @@ namespace DBSA2._0.ClassLibrary
         const string dbName = "programDB.db";
         //local stuff
         List<Item> items = new List<Item>();
-        public List<Item> ItemListView
+        public List<Item> ItemList
         {
             get
             {
@@ -31,6 +31,15 @@ namespace DBSA2._0.ClassLibrary
                 return ownLocations;
             }
         }
+        List<Customer> customers = new List<Customer>();
+        public List<Customer> CustomersList
+        {
+            get
+            {
+                UpdateCustomer();
+                return customers;
+            }
+        }
         public DataBaseManager()
         {
             using (SQLiteConnection connection = new SQLiteConnection(dbName))
@@ -39,7 +48,7 @@ namespace DBSA2._0.ClassLibrary
                 connection.CreateTable<ClassLibrary.OwnLocations>();
                 connection.CreateTable<ClassLibrary.Customer>();
                 connection.CreateTable<ClassLibrary.Item>();
-                items = ItemListView;
+                items = ItemList;
                 /*
                  CREATE TABLE IF NOT EXISTS babi(
 	name TEXT PRIMARY KEY NOT NULL,
@@ -57,7 +66,7 @@ namespace DBSA2._0.ClassLibrary
         }
         public bool AddItem(string barcode, string name, string location, ref string message)
         {
-            items = ItemListView;
+            items = ItemList;
             Item selected = null;
             bool isSucces = false;
             foreach (var item in items)
@@ -247,6 +256,8 @@ namespace DBSA2._0.ClassLibrary
                 }
             }
         }
+        
+        //customers
         public int AddCustomer(Customer customer, ref string message)
         {
             int result = int.MinValue;
@@ -293,6 +304,15 @@ namespace DBSA2._0.ClassLibrary
                 {
                     message = "Gagal: " + e.Message;
                 }
+            }
+        }
+
+        protected void UpdateCustomer()
+        {
+            customers.Clear();
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                customers = connection.Table<Customer>().ToList();
             }
         }
     }

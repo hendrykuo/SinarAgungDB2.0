@@ -61,30 +61,54 @@
                      Margin="5,5,5,5"
                      x:Name="idLengthTextBox"
                      PreviewTextInput="previewIDLengthTextInput"
-                     PreviewKeyDown="previewKeyDownIDLengthTextInput"
-                         />
+                     PreviewKeyDown="previewKeyDownIDLengthTextInput"/>
             </Grid>
-            <ListView Grid.Row="3"
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Row="3"
                   Margin="5,5,5,5"
                   Width="auto"
-                  x:Name="listView">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn x:Name="listViewNoColumn"
+                  x:Name="outputListView">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn x:Name="listViewNoColumn"
                                     Header="No"
-                                    Width="100"
+                                    Width="50"
                                     DisplayMemberBinding="{Binding index}"/>
-                        <GridViewColumn x:Name="listViewNameColumn" 
+                            <GridViewColumn x:Name="listViewNameColumn" 
                                     Header="Name"
-                                    Width="300"
+                                    Width="200"
                                     DisplayMemberBinding="{Binding name}"/>
-                        <GridViewColumn x:Name="listviewMessageColumn"
+                            <GridViewColumn x:Name="listviewMessageColumn"
                                     Header="Pesan"
-                                    Width="385"
+                                    Width="265"
                                     DisplayMemberBinding="{Binding message}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView Grid.Column="1"
+                          Margin="5,5,5,5"
+                          x:Name="savedItemListBox"
+                          SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="No"
+                                            Width="50"
+                                            DisplayMemberBinding="{Binding index}"/>
+                            <GridViewColumn Header="Nama Barang"
+                                            Width="150"
+                                            DisplayMemberBinding="{Binding name}"/>
+                            <GridViewColumn Header="Panjang ID"
+                                            Width="50"
+                                            DisplayMemberBinding="{Binding message}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            
         </Grid>
     </Grid>
 </Page>

@@ -29,7 +29,7 @@ namespace DBSA2._0.Pages
         public void UpdateUI()
         {
             itemNameListBox.Items.Clear();
-            List<ClassLibrary.Item> items = dataBaseManager.ItemListView;
+            List<ClassLibrary.Item> items = dataBaseManager.ItemList;
             for (int i = 0; i < items.Count; i++)
             {
                 ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(i+1 , items[i].itemName);
@@ -46,10 +46,32 @@ namespace DBSA2._0.Pages
 
         private void AddItemIntoTable(object sender, RoutedEventArgs e)
         {
-
+            int selectedLocationIndex = itemLocationListBox.SelectedIndex;
+            int selectedItemIndex = itemNameListBox.SelectedIndex;
+            string message = string.Empty;
+            if (selectedItemIndex >= 0
+                && selectedItemIndex >= 0)
+            {
+                ClassLibrary.ListViewDisplayContent selectedItem = (ClassLibrary.ListViewDisplayContent)itemNameListBox.SelectedItem;
+                ClassLibrary.ListViewDisplayContent selectedLocation = (ClassLibrary.ListViewDisplayContent)itemLocationListBox.SelectedItem;
+            }
+            else
+            {
+                message = "Gagal:";
+                if (selectedItemIndex == -1)
+                {
+                    message += message + "[Tidak ada Barang yang di pilih]";
+                }
+                if (selectedLocationIndex == -1)
+                {
+                    message += message + "[Tidak ada Lokasi yang di pilih]";
+                }
+            }
         }
-        //TODO: FORCE TEXT BOX TO ONLY ACCEPT INT
         //SELECT FROM name, location
         //shove it into your ass
+
+
+
     }
 }
