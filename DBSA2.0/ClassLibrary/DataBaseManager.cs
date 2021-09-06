@@ -141,6 +141,13 @@ namespace DBSA2._0.ClassLibrary
             }
             return result;
         }
+        public bool IsItemExist()
+        {
+            bool isExist = false;
+            SQLiteAsyncConnection connection = new SQLiteAsyncConnection(dbName);
+            
+            return isExist;
+        }
         public int DeleteItem(Item item, ref string message)
         {
             int result = int.MinValue;
@@ -244,15 +251,15 @@ namespace DBSA2._0.ClassLibrary
                 try
                 {
                     connection.Delete<OwnLocations>(warehouseName);
-                    message = "Sukses";
+                    message = "Sukses di hapus";
                 }
                 catch (SQLite.SQLiteException e)
                 {
-                    message = "Gagal : " + e.Message;
+                    message = "Gagal di hapus : " + e.Message;
                 }
                 catch (Exception e)
                 {
-                    message = "Gagal : " + e.Message;
+                    message = "Gagal di hapus : " + e.Message;
                 }
             }
         }

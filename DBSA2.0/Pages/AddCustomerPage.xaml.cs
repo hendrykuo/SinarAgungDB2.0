@@ -29,19 +29,6 @@ namespace DBSA2._0.Pages
             UpdateSavedCustomerListView();
             //dataBaseManager.GetCustomerList();
         }
-        //private void SettupListViewColumnWidth()
-        //{
-        //    double listViewWidth = outputListView.ActualWidth;
-        //    listViewNoColumn.Width = listViewWidth * listViewAspectRatio;
-        //    listViewNameColumn.Width = listViewWidth * 4 * listViewAspectRatio;
-        //}
-        //public void Reset()
-        //{
-        //    //use this to force calculate the window
-        //    this.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-        //    this.Arrange(new Rect(0, 0, this.DesiredSize.Width, this.DesiredSize.Height));
-        //    SettupListViewColumnWidth();
-        //}
         private void UpdateSavedCustomerListView()
         {
             List<ClassLibrary.Customer> customers = dataBaseManager.CustomersList;
@@ -65,6 +52,7 @@ namespace DBSA2._0.Pages
                 outputListView.Items.Add(customerUI);
                 UpdateSavedCustomerListView();
             }
+            customerNameTextBox.Text = string.Empty;
         }
 
         private void deleteButtonClick(object sender, RoutedEventArgs e)
@@ -78,6 +66,7 @@ namespace DBSA2._0.Pages
                 outputListView.Items.Add(listViewDisplayContent);
                 UpdateSavedCustomerListView();
             }
+            customerNameTextBox.Text = string.Empty;
         }
     }
 }

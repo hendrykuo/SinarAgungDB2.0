@@ -54,6 +54,7 @@ namespace DBSA2._0.Pages
             {
                 ClassLibrary.ListViewDisplayContent selectedItem = (ClassLibrary.ListViewDisplayContent)itemNameListBox.SelectedItem;
                 ClassLibrary.ListViewDisplayContent selectedLocation = (ClassLibrary.ListViewDisplayContent)itemLocationListBox.SelectedItem;
+                
             }
             else
             {
@@ -70,8 +71,7 @@ namespace DBSA2._0.Pages
         }
         //SELECT FROM name, location
         //shove it into your ass
-
-
+        
 
     }
 }

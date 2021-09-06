@@ -25,6 +25,7 @@ namespace DBSA2._0.Pages
         {
             InitializeComponent();
             this.dataBaseManager = dataBaseManager;
+            UpdateWarehuseList();
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -35,10 +36,11 @@ namespace DBSA2._0.Pages
                 string message = string.Empty;
                 ClassLibrary.OwnLocations ownLocations = new ClassLibrary.OwnLocations() { location = warehouseName };
                 dataBaseManager.AddOwnedLocation(ownLocations, ref message);
-                int index = listView.Items.Count + 1;
+                int index = outputListView.Items.Count + 1;
                 ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, warehouseName, message);
-                listView.Items.Add(displayContent);
+                outputListView.Items.Add(displayContent);
                 wareHouseNameTextBox.Text = string.Empty;
+                UpdateWarehuseList();
             }
         }
 
@@ -49,9 +51,26 @@ namespace DBSA2._0.Pages
             {
                 string message = string.Empty;
                 dataBaseManager.DeleteOwnedLocation(warehouseName, ref message);
-                int index = listView.Items.Count + 1;
+                int index = outputListView.Items.Count + 1;
                 ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, warehouseName, message);
-                listView.Items.Add(displayContent);
+                outputListView.Items.Add(displayContent);
+                UpdateWarehuseList();
+            }
+        }
+
+        public void UpdateWarehuseList()
+        {
+            if (dataBaseManager != null)
+            {
+                warehouseListView.Items.Clear();
+                List<ClassLibrary.OwnLocations> ownLocations = dataBaseManager.OwnLocationList;
+                for (int i = 0; i < ownLocations.Count; i++)
+                {
+                    int index = i + 1;
+                    string name = ownLocations[i].location;
+                    ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(index, name);
+                    warehouseListView.Items.Add(content);
+                }
             }
         }
     }
