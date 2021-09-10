@@ -34,7 +34,6 @@
             <TextBox Grid.Column="0"
                      Style="{StaticResource textBoxStyle}"
                      Margin="10,5,10,5"
-                     Text="SMC ID"
                      x:Name="textBoxSMCID"/>
             <Button Grid.Column="1"
                     Margin="10,5,10,5"
@@ -61,7 +60,21 @@
             </Grid.ColumnDefinitions>
             <ListView Grid.Column="0" 
                       x:Name="savedDataListView"
-                      Style="{StaticResource listBoxStyle}"/>
+                      Style="{StaticResource listBoxStyle}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="No"
+                                        Width="50"
+                                        DisplayMemberBinding="{Binding index}"/>
+                        <GridViewColumn Header="Input"
+                                        Width="200"
+                                        DisplayMemberBinding="{Binding name}"/>
+                        <GridViewColumn Header="Message"
+                                            Width="250"
+                                            DisplayMemberBinding="{Binding message}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="4*"/>

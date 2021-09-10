@@ -46,28 +46,44 @@ namespace DBSA2._0.Pages
 
         private void AddItemIntoTable(object sender, RoutedEventArgs e)
         {
+
             int selectedLocationIndex = itemLocationListBox.SelectedIndex;
             int selectedItemIndex = itemNameListBox.SelectedIndex;
+            string barcode = textBoxSMCID.Text;
             string message = string.Empty;
             if (selectedItemIndex >= 0
-                && selectedItemIndex >= 0)
+                && selectedLocationIndex >= 0
+                && barcode.Length >= 0)
             {
                 ClassLibrary.ListViewDisplayContent selectedItem = (ClassLibrary.ListViewDisplayContent)itemNameListBox.SelectedItem;
                 ClassLibrary.ListViewDisplayContent selectedLocation = (ClassLibrary.ListViewDisplayContent)itemLocationListBox.SelectedItem;
-                
+                //int selectedItemExpectedBarcodeLength = dataBaseManager.GetItemBarcodeCharacterLength(selectedItem.name);
+                dataBaseManager.SaveItemData(barcode, selectedItem.name, selectedLocation.name, ref message);
             }
             else
             {
                 message = "Gagal:";
+                if (barcode.Length == 0)
+                {
+                    message = message + "[Barcode kosong]";
+                }
                 if (selectedItemIndex == -1)
                 {
-                    message += message + "[Tidak ada Barang yang di pilih]";
+                    message = message + "[Tidak ada Barang yang di pilih]";
                 }
                 if (selectedLocationIndex == -1)
                 {
-                    message += message + "[Tidak ada Lokasi yang di pilih]";
+                    message = message + "[Tidak ada Lokasi yang di pilih]";
                 }
             }
+            int index = savedDataListView.Items.Count;
+
+            ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(index, textBoxSMCID.Text, message);
+            savedDataListView.Items.Add(content);
+            itemNameListBox.SelectedItem = -1;
+            itemLocationListBox.SelectedItem = -1;
+            textBoxSMCID.Text = string.Empty;
+
         }
         //SELECT FROM name, location
         //shove it into your ass

@@ -22,6 +22,7 @@ namespace DBSA2._0.ClassLibrary
             }
 
         }
+
         List<OwnLocations> ownLocations = new List<OwnLocations>();
         public List<OwnLocations> OwnLocationList
         {
@@ -40,6 +41,7 @@ namespace DBSA2._0.ClassLibrary
                 return customers;
             }
         }
+
         public DataBaseManager()
         {
             using (SQLiteConnection connection = new SQLiteConnection(dbName))
@@ -49,11 +51,6 @@ namespace DBSA2._0.ClassLibrary
                 connection.CreateTable<ClassLibrary.Customer>();
                 connection.CreateTable<ClassLibrary.Item>();
                 items = ItemList;
-                /*
-                 CREATE TABLE IF NOT EXISTS babi(
-	name TEXT PRIMARY KEY NOT NULL,
-	date Text NOT NULL);
-                 */
                 for (int i = 0; i < items.Count; i++)
                 {
                     SQLiteCommand command;
@@ -64,7 +61,9 @@ namespace DBSA2._0.ClassLibrary
                 //UpdateItem();
             }
         }
-        public bool AddItem(string barcode, string name, string location, ref string message)
+
+
+        public bool SaveItemData(string barcode, string name, string location, ref string message)
         {
             items = ItemList;
             Item selected = null;
@@ -105,9 +104,14 @@ namespace DBSA2._0.ClassLibrary
                 message = string.Format("Error: Tidak di temukan di database");
             }
             return isSucces;
-            
+
         }
         //Barcode Stuff
+        private string CheckIfBarcodeExistString(string barcode, string itemName)
+        {
+            string commandString = string.Format("SELECT EXISTS(SELECT barcode FROM '{0}' WHERE barcode='{1}');", itemName, barcode);
+            return commandString;
+        }
         private string CreateTableIfNotExistString(Item item)
         {
             string result = string.Format("CREATE TABLE IF NOT EXISTS '{0}'(barcode TEXT PRIMARY KEY NOT NULL, time TEXT NOT NULL, location TEXT NOT NULL);", item.itemName);
@@ -115,7 +119,7 @@ namespace DBSA2._0.ClassLibrary
         }
         private string InsertOrReplaceIntoString(string itemName, ItemData data)
         {
-            string result = string.Format("INSERT OR REPLACE INTO '{0}'(barcode, time, location) VALUES({1}, {2}, {3})", itemName, data.barcode, data.time, data.location);
+            string result = string.Format("INSERT OR REPLACE INTO '{0}'(barcode, time, location) VALUES('{1}', '{2}', '{3}')", itemName, data.barcode, data.time, data.location);
             return result;
         }
         //item
@@ -141,13 +145,21 @@ namespace DBSA2._0.ClassLibrary
             }
             return result;
         }
-        public bool IsItemExist()
+        public int GetItemBarcodeCharacterLength(string itemName)
         {
-            bool isExist = false;
-            SQLiteAsyncConnection connection = new SQLiteAsyncConnection(dbName);
-            
-            return isExist;
+            int result = int.MinValue;
+            items = ItemList;
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (itemName == items[i].itemName)
+                {
+                    result = items[i].characterLength;
+                    break;
+                }
+            }
+           return result;
         }
+        
         public int DeleteItem(Item item, ref string message)
         {
             int result = int.MinValue;
