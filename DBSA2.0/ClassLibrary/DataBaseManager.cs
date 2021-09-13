@@ -80,18 +80,26 @@ namespace DBSA2._0.ClassLibrary
             {
                 if (barcode.Length == selected.characterLength)
                 {
-                    using (SQLiteConnection connection = new SQLiteConnection(dbName))
+                    if (!IsBarcodeExist(barcode, name))
                     {
-                        SQLiteCommand command;
-                        ItemData data = new ItemData();
-                        data.barcode = barcode;
-                        data.location = location;
-                        data.time = DateTime.Now.ToString();
-                        string commandString = InsertOrReplaceIntoString(name, data);
-                        command = connection.CreateCommand(commandString);
-                        command.ExecuteNonQuery();
-                        message = "Sukses";
-                        isSucces = true;
+                        using (SQLiteConnection connection = new SQLiteConnection(dbName))
+                        {
+
+                            SQLiteCommand command;
+                            ItemData data = new ItemData();
+                            data.barcode = barcode;
+                            data.location = location;
+                            data.time = DateTime.Now.ToString();
+                            string commandString = InsertOrReplaceIntoString(name, data);
+                            command = connection.CreateCommand(commandString);
+                            command.ExecuteNonQuery();
+                            message = "Sukses";
+                            isSucces = true;
+                        }
+                    }
+                    else
+                    { 
+                        message = string.Format("Barcode sudah tersimpan");
                     }
                 }
                 else
@@ -106,7 +114,40 @@ namespace DBSA2._0.ClassLibrary
             return isSucces;
 
         }
+        private bool IsBarcodeExist(string barcode, string itemName)
+        {
+            bool exist = false;
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                try
+                {
+                    List<ItemData> items = connection.Query<ItemData>(GetItemData(barcode, itemName));
+                    //connection.Table();
+                    if (items.Count > 0)
+                    {
+                        if (items[0].barcode != null)
+                        {
+                            if (items[0].barcode == barcode)
+                            {
+                                exist = true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    //TODO: LOGGING
+                    //throw;
+                }
+            }
+            return exist;
+        }
         //Barcode Stuff
+        private string GetItemData(string barcode, string itemName)
+        {
+            string commandString = string.Format("SELECT * FROM '{0}' WHERE barcode='{1}'", itemName, barcode);
+            return commandString;
+        }
         private string CheckIfBarcodeExistString(string barcode, string itemName)
         {
             string commandString = string.Format("SELECT EXISTS(SELECT barcode FROM '{0}' WHERE barcode='{1}');", itemName, barcode);

@@ -46,7 +46,10 @@ namespace DBSA2._0.Pages
 
         private void AddItemIntoTable(object sender, RoutedEventArgs e)
         {
-
+            //Rules:
+            //1. location must be selected
+            //2. item type must be selected
+            //3. check barcode length
             int selectedLocationIndex = itemLocationListBox.SelectedIndex;
             int selectedItemIndex = itemNameListBox.SelectedIndex;
             string barcode = textBoxSMCID.Text;
@@ -76,7 +79,7 @@ namespace DBSA2._0.Pages
                     message = message + "[Tidak ada Lokasi yang di pilih]";
                 }
             }
-            int index = savedDataListView.Items.Count;
+            int index = savedDataListView.Items.Count + 1;
 
             ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(index, textBoxSMCID.Text, message);
             savedDataListView.Items.Add(content);
@@ -84,10 +87,7 @@ namespace DBSA2._0.Pages
             itemLocationListBox.SelectedItem = -1;
             textBoxSMCID.Text = string.Empty;
 
-        }
-        //SELECT FROM name, location
-        //shove it into your ass
-        
+        }        
 
     }
 }
