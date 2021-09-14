@@ -1,0 +1,99 @@
+﻿<Page x:Class="DBSA2._0.Pages.RegisterItemPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DBSA2._0.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegisterItemPage">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0"
+            Fill="{StaticResource menuBGColor}"/>
+        <Label Grid.Row="0"
+               Style="{StaticResource pageNameLabelStyle}"
+               Content="Register Barang"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Content="ID"
+                   Style="{StaticResource contentLabelStyle}"/>
+            <TextBox Grid.Column="1"
+                       Margin="5,5,5,0"
+                       x:Name="textBoxSMCID"
+                       Style="{StaticResource textBoxStyle}"/>
+            <Button Grid.Column="2"
+                    Style="{StaticResource buttonStyle}"
+                    Content="Cek"
+                    Margin="5,5,5,0"
+                    Click="In"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource contentLabelStyle}"
+                       Content="Daftar Toko:"/>
+                <ListView Grid.Row="1"
+                          Margin="5,5,5,5"
+                          Style="{StaticResource listBoxStyle}"
+                          Name="customerListView">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="No"
+                                            Width="50"
+                                            DisplayMemberBinding="{Binding index}"/>
+                            <GridViewColumn Header="Nama Customer"
+                                            Width="200"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="9*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                       Style="{StaticResource contentLabelStyle}"
+                       Content="Data"/>
+                <ListView Grid.Row="1"
+                          x:Name="dataListView"
+                          Style="{StaticResource listBoxStyle}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="No"
+                                            Width="50"
+                                            DisplayMemberBinding="{Binding index}"/>
+                            <GridViewColumn Header="Barcode"
+                                            Width="150"
+                                            DisplayMemberBinding="{Binding name}"/>
+                            <GridViewColumn Header="Message"
+                                            Width="300"
+                                            DisplayMemberBinding="{Binding message}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
