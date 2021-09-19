@@ -20,9 +20,50 @@ namespace DBSA2._0.Pages
     /// </summary>
     public partial class RegisterItemPage : Page
     {
-        public RegisterItemPage()
+        ClassLibrary.DataBaseManager dataBaseManager;
+        public RegisterItemPage(ClassLibrary.DataBaseManager dataBaseManager)
         {
             InitializeComponent();
+            this.dataBaseManager = dataBaseManager;
+            UpdateUI();
+        }
+
+        private void RegisterItemButtonClick(object sender, RoutedEventArgs e)
+        {
+            string barcode = textBoxSMCID.Text;
+            int selectedItemIndex = itemListView.SelectedIndex;
+            int selectedCustomerIndex = customerListView.SelectedIndex;
+            if (!string.IsNullOrWhiteSpace(barcode)
+                && selectedItemIndex >= 0
+                && selectedCustomerIndex >= 0)
+            {
+                ClassLibrary.ListViewDisplayContent selectedItem     = (ClassLibrary.ListViewDisplayContent)itemListView.SelectedItem;
+                ClassLibrary.ListViewDisplayContent selectedCustomer = (ClassLibrary.ListViewDisplayContent)customerListView.SelectedItem;
+                string itemName     = selectedItem.name;
+                string customerName = selectedCustomer.name;
+            }
+        }
+
+        public void UpdateUI()
+        {
+            List<ClassLibrary.Item> items = dataBaseManager.ItemList;
+            List<ClassLibrary.Customer> customers = dataBaseManager.CustomersList;
+
+            customerListView.Items.Clear();
+            for (int i = 0; i < customers.Count; i++)
+            {
+                int index = i + 1;
+                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, customers[i].name);
+                customerListView.Items.Add(listViewDisplayContent);
+            }
+
+            itemListView.Items.Clear(); ;
+            for (int i = 0; i < items.Count; i++)
+            {
+                int index = i + 1;
+                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, items[i].itemName);
+                itemListView.Items.Add(listViewDisplayContent);
+            }
         }
     }
 }

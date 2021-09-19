@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SQLite;
 namespace DBSA2._0.ClassLibrary
 {
-    class ItemData
+    public class ItemData
     {
         [Unique, NotNull, PrimaryKey]
         public string barcode

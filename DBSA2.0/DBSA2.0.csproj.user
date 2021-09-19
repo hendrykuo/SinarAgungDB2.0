@@ -10,7 +10,7 @@
     <Compile Update="Pages\AddCustomerPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\CheckItemStatusPage.xaml.cs">
+    <Compile Update="Pages\CheckItemsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\InputItemPage.xaml.cs">
@@ -36,7 +36,7 @@
     <Page Update="Pages\AddCustomerPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\CheckItemStatusPage.xaml">
+    <Page Update="Pages\CheckItemsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\InputItemPage.xaml">

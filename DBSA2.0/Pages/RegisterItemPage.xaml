@@ -37,7 +37,7 @@
                     Style="{StaticResource buttonStyle}"
                     Content="Cek"
                     Margin="5,5,5,0"
-                    Click="In"/>
+                    Click="RegisterItemButtonClick"/>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -47,14 +47,15 @@
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="9*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0"
                        VerticalAlignment="Center"
                        Style="{StaticResource contentLabelStyle}"
                        Content="Daftar Toko:"/>
                 <ListView Grid.Row="1"
-                          Margin="5,5,5,5"
                           Style="{StaticResource listBoxStyle}"
                           Name="customerListView">
                     <ListView.View>
@@ -63,11 +64,31 @@
                                             Width="50"
                                             DisplayMemberBinding="{Binding index}"/>
                             <GridViewColumn Header="Nama Customer"
-                                            Width="200"/>
+                                            Width="200"
+                                            DisplayMemberBinding="{Binding name}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <Label Grid.Row="2"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource contentLabelStyle}"
+                       Content="Daftar Barang:"/>
+                <ListView Grid.Row="3"
+                          Style="{StaticResource listBoxStyle}"
+                          x:Name="itemListView">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="no"
+                                            Width="50"
+                                            DisplayMemberBinding="{Binding index}"/>
+                            <GridViewColumn Header="Nama Barang"
+                                            Width="200"
+                                            DisplayMemberBinding="{Binding name}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
             </Grid>
+            
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

@@ -121,7 +121,7 @@ namespace DBSA2._0.ClassLibrary
             {
                 try
                 {
-                    List<ItemData> items = connection.Query<ItemData>(GetItemData(barcode, itemName));
+                    List<ItemData> items = connection.Query<ItemData>(GetItemDataString(barcode, itemName));
                     //connection.Table();
                     if (items.Count > 0)
                     {
@@ -142,8 +142,36 @@ namespace DBSA2._0.ClassLibrary
             }
             return exist;
         }
+        public ItemData GetItemData(string barcode, string itemName, ref string message)
+        {
+            ItemData itemData = null;
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                try
+                {
+                    List<ItemData> items = connection.Query<ItemData>(GetItemDataString(barcode, itemName));
+                    if (items.Count > 0)
+                    {
+                        if (items[0] != null)
+                        {
+                            itemData = items[0];
+                            message = "Succes";
+                        }
+                    }
+                    else
+                    {
+                        message = "Belum terdaftar";
+                    }
+                }
+                catch (Exception e)
+                {
+                    message = "Gagal:" + e.Message;
+                }
+            }
+            return itemData;
+        }
         //Barcode Stuff
-        private string GetItemData(string barcode, string itemName)
+        private string GetItemDataString(string barcode, string itemName)
         {
             string commandString = string.Format("SELECT * FROM '{0}' WHERE barcode='{1}'", itemName, barcode);
             return commandString;

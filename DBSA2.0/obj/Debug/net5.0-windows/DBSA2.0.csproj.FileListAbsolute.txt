@@ -121,10 +121,11 @@ D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\bin\Debug\net5.0-windo
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\bin\Debug\net5.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\bin\Debug\net5.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\bin\Debug\net5.0-windows\runtimes\win-x86\native\e_sqlite3.dll
-D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.csproj.AssemblyReference.cache
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\MainWindow.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\AddCustomerPage.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\InputItemPage.g.cs
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\ItemPage.g.cs
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\RegisterItemPage.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\WareHousePage.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Temporary.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\App.g.cs
@@ -134,6 +135,8 @@ D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windo
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\MainWindow.baml
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\AddCustomerPage.baml
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\InputItemPage.baml
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\ItemPage.baml
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\RegisterItemPage.baml
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\WareHousePage.baml
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Temporary.baml
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.g.resources
@@ -146,5 +149,6 @@ D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windo
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\ref\DBSA2.0.dll
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.pdb
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.genruntimeconfig.cache
-D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\ItemPage.g.cs
-D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\ItemPage.baml
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.csproj.AssemblyReference.cache
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\CheckItemsPage.g.cs
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\CheckItemsPage.baml

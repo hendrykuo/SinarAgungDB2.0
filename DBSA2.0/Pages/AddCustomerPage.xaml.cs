@@ -29,6 +29,10 @@ namespace DBSA2._0.Pages
             UpdateSavedCustomerListView();
             //dataBaseManager.GetCustomerList();
         }
+        public void UpdateUI()
+        {
+            UpdateSavedCustomerListView();
+        }
         private void UpdateSavedCustomerListView()
         {
             List<ClassLibrary.Customer> customers = dataBaseManager.CustomersList;

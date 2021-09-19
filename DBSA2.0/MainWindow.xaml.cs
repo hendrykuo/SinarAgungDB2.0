@@ -26,6 +26,9 @@ namespace DBSA2._0
         Pages.InputItemPage inputItemPage;
         Pages.AddCustomerPage addCustomerPage;
         Pages.ItemPage itemPage;
+        Pages.CheckItemsPage checkItemsPage;
+        Pages.RegisterItemPage registerItemPage;
+        Pages.WareHousePage wareHousePage;
         Button disabledButton = null;
         Button[] buttons;
         public MainWindow()
@@ -37,9 +40,12 @@ namespace DBSA2._0
         }
         private void SettupPages()
         {
-            inputItemPage = new Pages.InputItemPage(dataBaseManager);
-            addCustomerPage = new Pages.AddCustomerPage(dataBaseManager);
-            itemPage = new Pages.ItemPage(dataBaseManager);
+            inputItemPage       = new Pages.InputItemPage(dataBaseManager);
+            addCustomerPage     = new Pages.AddCustomerPage(dataBaseManager);
+            itemPage            = new Pages.ItemPage(dataBaseManager);
+            checkItemsPage      = new Pages.CheckItemsPage(dataBaseManager);
+            registerItemPage    = new Pages.RegisterItemPage(dataBaseManager);
+            wareHousePage       = new Pages.WareHousePage(dataBaseManager);
         }
 
         void ToggleButton(Button button)
@@ -59,37 +65,36 @@ namespace DBSA2._0
 
         private void RegisterItemButtonClicked(object sender, RoutedEventArgs e)
         {
-            //ToggleButton(sender as Button);
-            programMainFrame.Content = new Temporary("Register Item Page");
+            programMainFrame.Content = registerItemPage;
+            wareHousePage.UpdateUI();
         }
 
         private void CheckItemButtonClicked(object sender, RoutedEventArgs e)
         {
-            //ToggleButton(sender as Button);
-            programMainFrame.Content = new Temporary("Check Item Item Page");
+            programMainFrame.Content = checkItemsPage;
+            checkItemsPage.UpdateUI();
         }
         private void AddOwnLocationClicked(object sender, RoutedEventArgs e)
         {
-            programMainFrame.Content = new Pages.WareHousePage(dataBaseManager);
+            programMainFrame.Content = wareHousePage;
+            wareHousePage.UpdateUI();
         }
 
         private void AddCustomerBtnClick(object sender, RoutedEventArgs e)
         {
             programMainFrame.Content = addCustomerPage;
-            //addCustomerPage.Reset();
-            
+            addCustomerPage.UpdateUI();
         }
 
         private void itemPageButtonClick(object sender, RoutedEventArgs e)
         {
             programMainFrame.Content = itemPage;
+            itemPage.UpdateUI();
         }
 
         private void testBtnClicked(object sender, RoutedEventArgs e)
         {
-            programMainFrame.Content = new Temporary("Check Item Item Page");
+            programMainFrame.Content = new Temporary("TEST");
         }
-
-        
     }
 }

@@ -28,6 +28,10 @@ namespace DBSA2._0.Pages
             DataObject.AddPastingHandler(idLengthTextBox, PasteHandler);
             UpdateSavedItemListBox();
         }
+        public void UpdateUI()
+        {
+            UpdateSavedItemListBox();
+        }
         private void UpdateSavedItemListBox()
         {
             savedItemListBox.Items.Clear();
