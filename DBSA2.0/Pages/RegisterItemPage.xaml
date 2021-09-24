@@ -35,7 +35,7 @@
                        Style="{StaticResource textBoxStyle}"/>
             <Button Grid.Column="2"
                     Style="{StaticResource buttonStyle}"
-                    Content="Cek"
+                    Content="Daftar"
                     Margin="5,5,5,0"
                     Click="RegisterItemButtonClick"/>
         </Grid>

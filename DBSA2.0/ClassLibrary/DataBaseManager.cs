@@ -62,7 +62,56 @@ namespace DBSA2._0.ClassLibrary
             }
         }
 
+        public bool UpdateItemData(string barcode, string name, string location, ref string message)
+        {
+            items = ItemList;
+            Item selected = null;
+            bool isSucces = false;
+            foreach (var item in items)
+            {
+                if (item.itemName == name)
+                {
+                    selected = item;
+                    break;
+                }
+            }
+            if (selected != null)
+            {
+                if (barcode.Length == selected.characterLength)
+                {
+                    if (IsBarcodeExist(barcode, name))
+                    {
+                        using (SQLiteConnection connection = new SQLiteConnection(dbName))
+                        {
 
+                            SQLiteCommand command;
+                            ItemData data = new ItemData();
+                            data.barcode = barcode;
+                            data.location = location;
+                            data.time = DateTime.Now.ToString();
+                            string commandString = InsertOrReplaceIntoString(name, data);
+                            command = connection.CreateCommand(commandString);
+                            command.ExecuteNonQuery();
+                            message = "Sukses";
+                            isSucces = true;
+                        }
+                    }
+                    else
+                    {
+                        message = string.Format("Barcode Belum Di Daftarkan");
+                    }
+                }
+                else
+                {
+                    message = string.Format("Error: panjang id input: {0} panjang id yang di perlukan: {1}", barcode.Length, selected.characterLength);
+                }
+            }
+            else
+            {
+                message = string.Format("Error: Tidak di temukan di database");
+            }
+            return isSucces;
+        }
         public bool SaveItemData(string barcode, string name, string location, ref string message)
         {
             items = ItemList;
@@ -98,7 +147,7 @@ namespace DBSA2._0.ClassLibrary
                         }
                     }
                     else
-                    { 
+                    {
                         message = string.Format("Barcode sudah tersimpan");
                     }
                 }
@@ -226,9 +275,9 @@ namespace DBSA2._0.ClassLibrary
                     break;
                 }
             }
-           return result;
+            return result;
         }
-        
+
         public int DeleteItem(Item item, ref string message)
         {
             int result = int.MinValue;
@@ -280,14 +329,14 @@ namespace DBSA2._0.ClassLibrary
                 items = connection.Table<Item>().ToList();
             }
         }
-        
+
         //location
         public int AddOwnedLocation(OwnLocations location, ref string message)
         {
             int result = int.MinValue;
             using (SQLiteConnection connection = new SQLiteConnection(dbName))
             {
-                
+
                 try
                 {
                     result = connection.Insert(location);
@@ -323,7 +372,7 @@ namespace DBSA2._0.ClassLibrary
                 ownLocations = connection.Table<OwnLocations>().ToList();
             }
         }
-        
+
         public void DeleteOwnedLocation(string warehouseName, ref string message)
         {
             message = string.Empty;
@@ -344,12 +393,12 @@ namespace DBSA2._0.ClassLibrary
                 }
             }
         }
-        
+
         //customers
         public int AddCustomer(Customer customer, ref string message)
         {
             int result = int.MinValue;
-            using(SQLiteConnection connection = new SQLiteConnection(dbName))
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
             {
 
                 try
@@ -378,7 +427,7 @@ namespace DBSA2._0.ClassLibrary
             }
             return result;
         }
-        
+
         public void DeleteCustomer(string customerName, ref string message)
         {
             using (SQLiteConnection connection = new SQLiteConnection(dbName))

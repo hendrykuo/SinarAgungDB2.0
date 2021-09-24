@@ -152,3 +152,7 @@ D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windo
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\DBSA2.0.csproj.AssemblyReference.cache
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\CheckItemsPage.g.cs
 D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\CheckItemsPage.baml
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\UtilityPage.g.cs
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\obj\Debug\net5.0-windows\Pages\UtilityPage.baml
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\bin\Debug\net5.0-windows\Microsoft.Office.Interop.Excel.dll
+D:\Github Project\SADBGit\SinarAgungDB2.0Backup00\DBSA2.0\bin\Debug\net5.0-windows\runtimes\linux-mips64\native\libe_sqlite3.so

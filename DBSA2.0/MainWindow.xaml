@@ -80,6 +80,17 @@
                                 TextAlignment="Center"
                                FontSize="14"/>
                 </Button>
+                <Button x:Name="Utility" 
+                        Margin="5, 5, 5, 5"
+                        Click="utilityPageButtonClick"
+                        Foreground="GhostWhite"
+                        Background ="{StaticResource menuBGColor}"
+                        BorderBrush="{StaticResource menuBGColor}">
+                    <TextBlock Text="Utility"
+                               TextWrapping="Wrap"
+                                TextAlignment="Center"
+                               FontSize="14"/>
+                </Button>
                 <Button x:Name="testBtn"
                         Content="testBtn"
                         Click="testBtnClicked"/>

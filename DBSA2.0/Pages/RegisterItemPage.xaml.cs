@@ -41,6 +41,11 @@ namespace DBSA2._0.Pages
                 ClassLibrary.ListViewDisplayContent selectedCustomer = (ClassLibrary.ListViewDisplayContent)customerListView.SelectedItem;
                 string itemName     = selectedItem.name;
                 string customerName = selectedCustomer.name;
+                string message = string.Empty;
+                dataBaseManager.UpdateItemData(barcode, itemName, customerName, ref message);
+                int index = dataListView.Items.Count + 1;
+                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, barcode, message);
+                dataListView.Items.Add(displayContent);
             }
         }
 

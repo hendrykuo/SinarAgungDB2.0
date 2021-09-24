@@ -29,6 +29,7 @@ namespace DBSA2._0
         Pages.CheckItemsPage checkItemsPage;
         Pages.RegisterItemPage registerItemPage;
         Pages.WareHousePage wareHousePage;
+        Pages.UtilityPage utilityPage;
         Button disabledButton = null;
         Button[] buttons;
         public MainWindow()
@@ -46,6 +47,7 @@ namespace DBSA2._0
             checkItemsPage      = new Pages.CheckItemsPage(dataBaseManager);
             registerItemPage    = new Pages.RegisterItemPage(dataBaseManager);
             wareHousePage       = new Pages.WareHousePage(dataBaseManager);
+            utilityPage         = new Pages.UtilityPage(dataBaseManager);
         }
 
         void ToggleButton(Button button)
@@ -95,6 +97,12 @@ namespace DBSA2._0
         private void testBtnClicked(object sender, RoutedEventArgs e)
         {
             programMainFrame.Content = new Temporary("TEST");
+        }
+
+        private void utilityPageButtonClick(object sender, RoutedEventArgs e)
+        {
+            programMainFrame.Content = utilityPage;
+            utilityPage.UpdateUI();
         }
     }
 }
