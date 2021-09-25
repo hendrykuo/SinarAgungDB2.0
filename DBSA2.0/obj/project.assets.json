@@ -11,6 +11,18 @@
           "lib/netstandard2.0/ExcelDataReader.dll": {}
         }
       },
+      "ExcelDataReader.DataSet/3.6.0": {
+        "type": "package",
+        "dependencies": {
+          "ExcelDataReader": "3.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/ExcelDataReader.DataSet.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/ExcelDataReader.DataSet.dll": {}
+        }
+      },
       "Microsoft.Office.Interop.Excel/15.0.4795.1000": {
         "type": "package",
         "compile": {
@@ -170,6 +182,26 @@
         "lib/netstandard2.0/ExcelDataReader.xml"
       ]
     },
+    "ExcelDataReader.DataSet/3.6.0": {
+      "sha512": "miW3sWmPXnLM38YadRIfnhL4W4QZajpS6Q/OqsOpFJU5ct8h+M/fMpbGMm5INtsMP0Y1k0WK0stIfSW3RP31Xg==",
+      "type": "package",
+      "path": "exceldatareader.dataset/3.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "exceldatareader.dataset.3.6.0.nupkg.sha512",
+        "exceldatareader.dataset.nuspec",
+        "lib/net20/ExcelDataReader.DataSet.dll",
+        "lib/net20/ExcelDataReader.DataSet.pdb",
+        "lib/net20/ExcelDataReader.DataSet.xml",
+        "lib/net35/ExcelDataReader.DataSet.dll",
+        "lib/net35/ExcelDataReader.DataSet.pdb",
+        "lib/net35/ExcelDataReader.DataSet.xml",
+        "lib/netstandard2.0/ExcelDataReader.DataSet.dll",
+        "lib/netstandard2.0/ExcelDataReader.DataSet.pdb",
+        "lib/netstandard2.0/ExcelDataReader.DataSet.xml"
+      ]
+    },
     "Microsoft.Office.Interop.Excel/15.0.4795.1000": {
       "sha512": "DfceS96ustwfL8EOJNNRtpk6b0RylhjNpgeeemuvi9X4GYks2UTeAimjSrdFEfuqRo5ibZ4Sd0gJIeDr9gMa6Q==",
       "type": "package",
@@ -295,31 +327,29 @@
   "projectFileDependencyGroups": {
     "net5.0-windows7.0": [
       "ExcelDataReader >= 3.6.0",
+      "ExcelDataReader.DataSet >= 3.6.0",
       "Microsoft.Office.Interop.Excel >= 15.0.4795.1000",
       "sqlite-net-pcl >= 1.8.116"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hendry kuo\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Users\\hendr\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0Backup00\\DBSA2.0\\DBSA2.0.csproj",
+      "projectUniqueName": "D:\\ProgrammingStuff\\SinarAgungDB2.0\\DBSA2.0\\DBSA2.0.csproj",
       "projectName": "DBSA2.0",
-      "projectPath": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0Backup00\\DBSA2.0\\DBSA2.0.csproj",
-      "packagesPath": "C:\\Users\\hendry kuo\\.nuget\\packages\\",
-      "outputPath": "D:\\Github Project\\SADBGit\\SinarAgungDB2.0Backup00\\DBSA2.0\\obj\\",
+      "projectPath": "D:\\ProgrammingStuff\\SinarAgungDB2.0\\DBSA2.0\\DBSA2.0.csproj",
+      "packagesPath": "C:\\Users\\hendr\\.nuget\\packages\\",
+      "outputPath": "D:\\ProgrammingStuff\\SinarAgungDB2.0\\DBSA2.0\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\hendry kuo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\hendr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -347,6 +377,10 @@
         "targetAlias": "net5.0-windows",
         "dependencies": {
           "ExcelDataReader": {
+            "target": "Package",
+            "version": "[3.6.0, )"
+          },
+          "ExcelDataReader.DataSet": {
             "target": "Package",
             "version": "[3.6.0, )"
           },

@@ -65,6 +65,7 @@ namespace DBSA2._0.Pages
             if (check)
             {
                 message = "File exist";
+                ReadExcel(path);
             }
             AddItemToListView(dataListView, path, message);
         }
@@ -81,9 +82,25 @@ namespace DBSA2._0.Pages
                 // Auto-detect format, supports:
                 //  - Binary Excel files (2.0-2003 format; *.xls)
                 //  - OpenXml Excel files (2007 format; *.xlsx, *.xlsb)
-                using (IExcelDataReader reader = ExcelReaderFactory.CreateBinaryReader(stream))
+                try
+                {
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        do
+                        {
+                            while (reader.Read())
+                            {
+                                //reader.GetString();
+                            }
+                        } while (reader.NextResult());
+                        //System.Data.DataSet dataSet = reader.AsDataSet();
+                    
+                    }
+                }
+                catch (Exception)
                 {
 
+                    throw;
                 }
             }
         }

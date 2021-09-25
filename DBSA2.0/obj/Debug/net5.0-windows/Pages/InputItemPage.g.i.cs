@@ -85,7 +85,7 @@ namespace DBSA2._0.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DBSA2.0;V1.0.0.0;component/pages/inputitempage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/DBSA2.0;component/pages/inputitempage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\InputItemPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
