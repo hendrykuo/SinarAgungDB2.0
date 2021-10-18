@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
-using ExcelDataReader;
+using IronXL;
 
 namespace DBSA2._0.Pages
 {
@@ -59,14 +59,37 @@ namespace DBSA2._0.Pages
         private void SaveCommonData(object sender, RoutedEventArgs e)
         {
             string path = @filePathForCommonFile.Text;
-            
-            bool check = IsFileExist(path);
-            string message = "File not found";
-            if (check)
+            string message = string.Empty;
+            if (string.IsNullOrWhiteSpace(path))
             {
-                message = "File exist";
-                ReadExcel(path);
+                message = "Lokasi file belum di input";
             }
+            else
+            {
+                if (saveTypeComboBox.SelectedItem == null)
+                {
+                    message = "Tipe data belum di pilih";
+                }
+                else
+                { 
+                    bool check = IsFileExist(path);
+                    if (check)
+                    {
+                        int index = saveTypeComboBox.SelectedIndex;
+                        
+                        string selectedType = saveTypeComboBox.Items[index].ToString();
+                        message = "File exist";
+                        ReadExcel(path, selectedType);
+                    }
+                    else
+                    {
+                        message = "File tidak di temukan"; ;
+                    }
+                
+                }
+            
+            }
+
             AddItemToListView(dataListView, path, message);
         }
         void AddItemToListView(ListView listView, string name, string message)
@@ -75,33 +98,121 @@ namespace DBSA2._0.Pages
             ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, name, message);
             listView.Items.Add(displayContent);
         }
-        void ReadExcel(string path)
+        void ReadExcel(string path, string saveType)
         {
-            using (FileStream stream = File.Open(path, FileMode.Open, FileAccess.Read))
+            try
             {
-                // Auto-detect format, supports:
-                //  - Binary Excel files (2.0-2003 format; *.xls)
-                //  - OpenXml Excel files (2007 format; *.xlsx, *.xlsb)
-                try
+                WorkBook workBook = WorkBook.Load(path);
+                WorkSheet sheet = workBook.WorkSheets.First();
+                int columnCount = sheet.ColumnCount;
+                int rowCount = sheet.RowCount;
+                if (saveType.Contains("Lokasi Gudang"))
                 {
-                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    //Not implemented
+                }
+                else if (saveType.Contains("Daftar Barang"))
+                {
+                    for (int i = 1; i < rowCount; i++)
                     {
-                        do
+                        string message = string.Empty;
+                        ClassLibrary.Item item = new ClassLibrary.Item();
+
+                        item.itemName = sheet.GetRow(i).Columns[1].ToString();
+                        item.characterLength = int.Parse(sheet.GetRow(i).Columns[2].ToString());
+                        dataBaseManager.AddItem(item, ref message);
+                        if (message.Contains("sukses"))
                         {
-                            while (reader.Read())
-                            {
-                                //reader.GetString();
-                            }
-                        } while (reader.NextResult());
-                        //System.Data.DataSet dataSet = reader.AsDataSet();
-                    
+                            dataBaseManager.CreateItemTable(item);
+                            message = string.Format("{0} Tersimpan", item.itemName);
+                        }
+                        AddItemToListView(dataListView, item.itemName, message);
                     }
                 }
-                catch (Exception)
+                else if ( saveType.Contains("Daftar Customer"))
                 {
-
-                    throw;
+                    for (int i = 1; i < rowCount; i++)
+                    {
+                        ClassLibrary.Customer customer = new ClassLibrary.Customer();
+                        customer.name = sheet.GetRow(i).Columns[1].ToString();
+                        string message = string.Empty;
+                        dataBaseManager.AddCustomer(customer, ref message);
+                        if (message.Contains("Sukses"))
+                        {
+                            message = string.Format("{0} Tersimpan", customer.name);
+                        }
+                        AddItemToListView(dataListView, customer.name, message);
+                    }
                 }
+                else
+                { 
+                    //TODO: NOT FOUND
+                }
+            }
+            catch (Exception e)
+            { 
+            
+            }
+        }
+        private void SaveItemData(object sender, RoutedEventArgs e)
+        {
+            string path = itemFilePath.Text;
+            string message = string.Empty;
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                message = "Lokasi file belum di input";
+            }
+            else
+            {
+                if (itemNameComboBox.SelectedItem == null)
+                {
+                    message = "Nama Barang belum di pilih";
+                }
+                else
+                {
+                    bool check = IsFileExist(path);
+                    if (check)
+                    {
+                        int index = itemNameComboBox.SelectedIndex;
+
+                        string selectedType = itemNameComboBox.Items[index].ToString();
+                        message = "File exist";
+                        SaveItemData(path, selectedType);
+                    }
+                    else
+                    {
+                        message = "File tidak di temukan"; ;
+                    }
+
+                }
+
+            }
+            AddItemToListView(dataListView, path, message);
+        }
+        private void SaveItemData(string path, string itemName)
+        {
+            try
+            {
+                string message = string.Empty;
+                WorkBook workBook = WorkBook.Load(path);
+                WorkSheet sheet = workBook.WorkSheets.First();
+                //int columnCount = sheet.ColumnCount;
+                int rowCount = sheet.RowCount;
+                //int rowCount = 4917;
+                //input 
+                for (int i = 0; i < rowCount; i++)
+                {
+                    ClassLibrary.ItemData itemData = new ClassLibrary.ItemData();
+                    itemData.barcode    = sheet.GetRow(i).Columns[0].ToString();
+                    itemData.location   = sheet.GetRow(i).Columns[1].ToString();
+                    itemData.time       = sheet.GetRow(i).Columns[2].ToString();
+                    dataBaseManager.SaveItemData(itemName,itemData, ref message);
+                    AddItemToListView(dataListView, itemData.barcode, message);
+                }
+            }
+            catch (Exception e)
+            {
+                AddItemToListView(dataListView, path, e.Message);
+                // throw;
             }
         }
     }

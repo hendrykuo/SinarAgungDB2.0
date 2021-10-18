@@ -30,23 +30,7 @@ namespace DBSA2._0.Pages
 
         private void RegisterItemButtonClick(object sender, RoutedEventArgs e)
         {
-            string barcode = textBoxSMCID.Text;
-            int selectedItemIndex = itemListView.SelectedIndex;
-            int selectedCustomerIndex = customerListView.SelectedIndex;
-            if (!string.IsNullOrWhiteSpace(barcode)
-                && selectedItemIndex >= 0
-                && selectedCustomerIndex >= 0)
-            {
-                ClassLibrary.ListViewDisplayContent selectedItem     = (ClassLibrary.ListViewDisplayContent)itemListView.SelectedItem;
-                ClassLibrary.ListViewDisplayContent selectedCustomer = (ClassLibrary.ListViewDisplayContent)customerListView.SelectedItem;
-                string itemName     = selectedItem.name;
-                string customerName = selectedCustomer.name;
-                string message = string.Empty;
-                dataBaseManager.UpdateItemData(barcode, itemName, customerName, ref message);
-                int index = dataListView.Items.Count + 1;
-                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, barcode, message);
-                dataListView.Items.Add(displayContent);
-            }
+            RegisterItem();
         }
 
         public void UpdateUI()
@@ -69,6 +53,39 @@ namespace DBSA2._0.Pages
                 ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, items[i].itemName);
                 itemListView.Items.Add(listViewDisplayContent);
             }
+        }
+
+        private void TextBoxSMCID_KeyPressed(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RegisterItem();
+            }
+        }
+        private void RegisterItem()
+        {
+            string barcode = textBoxSMCID.Text;
+            int selectedItemIndex = itemListView.SelectedIndex;
+            int selectedCustomerIndex = customerListView.SelectedIndex;
+            if (!string.IsNullOrWhiteSpace(barcode)
+                && selectedItemIndex >= 0
+                && selectedCustomerIndex >= 0)
+            {
+                ClassLibrary.ListViewDisplayContent selectedItem = (ClassLibrary.ListViewDisplayContent)itemListView.SelectedItem;
+                ClassLibrary.ListViewDisplayContent selectedCustomer = (ClassLibrary.ListViewDisplayContent)customerListView.SelectedItem;
+                string itemName = selectedItem.name;
+                string customerName = selectedCustomer.name;
+                string message = string.Empty;
+                dataBaseManager.UpdateItemData(barcode, itemName, customerName, ref message);
+                if (message == "Sukses")
+                {
+                    message = string.Format("{0}-{1}-{2} Sukses terdaftar", itemName, barcode, customerName);
+                }
+                int index = dataListView.Items.Count + 1;
+                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, barcode, message);
+                dataListView.Items.Add(displayContent);
+            }
+            textBoxSMCID.Text = string.Empty;
         }
     }
 }

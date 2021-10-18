@@ -68,7 +68,7 @@ namespace DBSA2._0
         private void RegisterItemButtonClicked(object sender, RoutedEventArgs e)
         {
             programMainFrame.Content = registerItemPage;
-            wareHousePage.UpdateUI();
+            registerItemPage.UpdateUI();
         }
 
         private void CheckItemButtonClicked(object sender, RoutedEventArgs e)

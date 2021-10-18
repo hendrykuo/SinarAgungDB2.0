@@ -33,7 +33,8 @@
             <TextBox Grid.Column="0"
                      Style="{StaticResource textBoxStyle}"
                      Margin="10,5,10,5"
-                     x:Name="textBoxSMCID"/>
+                     x:Name="textBoxSMCID"
+                     KeyDown="TextBoxSMCID_KeyDown"/>
             <Button Grid.Column="1"
                     Margin="10,5,10,5"
                     Style="{StaticResource buttonStyle}"

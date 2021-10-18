@@ -72,7 +72,8 @@
             </ListView>
             <ListView Grid.Column="1"
                       x:Name="savedCustomerListView"
-                      Margin="5,5,5,5">
+                      Margin="5,5,5,5"
+                      SelectionMode="Single">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="No"

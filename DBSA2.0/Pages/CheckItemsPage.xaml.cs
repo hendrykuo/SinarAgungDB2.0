@@ -28,6 +28,22 @@ namespace DBSA2._0.Pages
         }
         private void CheckItemStatusClick(object sender, RoutedEventArgs e)
         {
+            CheckItem();
+        }
+        public void UpdateUI()
+        {
+            itemNameListView.Items.Clear();
+            List<ClassLibrary.Item> itemNameList = dataBaseManager.ItemList;
+
+            for (int i = 0; i < itemNameList.Count; i++)
+            {
+                int index = i + 1;
+                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, itemNameList[i].itemName);
+                itemNameListView.Items.Add(displayContent);
+            }
+        }
+        private void CheckItem()
+        {
             string barcode = textBoxSMCID.Text;
             int itemSelectedIndex = itemNameListView.SelectedIndex;
             if (!string.IsNullOrEmpty(barcode)
@@ -43,7 +59,7 @@ namespace DBSA2._0.Pages
                 ClassLibrary.ListViewDisplayContent listViewDisplayContent;
                 if (itemData != null)
                 {
-                    message = message + string.Format(":Lokasi{0} Waktu terdaftar{1}", itemData.location, itemData.time);
+                    message = message + string.Format(": Lokasi[{0}] Waktu terdaftar[{1}]", itemData.location, itemData.time);
                     listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, barcode, message);
                 }
                 else
@@ -52,17 +68,14 @@ namespace DBSA2._0.Pages
                 }
                 dataListView.Items.Add(listViewDisplayContent);
             }
+            textBoxSMCID.Text = string.Empty;
         }
-        public void UpdateUI()
-        {
-            itemNameListView.Items.Clear();
-            List<ClassLibrary.Item> itemNameList = dataBaseManager.ItemList;
 
-            for (int i = 0; i < itemNameList.Count; i++)
+        private void TextBoxSMCID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
             {
-                int index = i + 1;
-                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, itemNameList[i].itemName);
-                itemNameListView.Items.Add(displayContent);
+                CheckItem();
             }
         }
     }

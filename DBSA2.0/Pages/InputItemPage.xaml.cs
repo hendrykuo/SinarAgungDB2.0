@@ -50,6 +50,18 @@ namespace DBSA2._0.Pages
             //1. location must be selected
             //2. item type must be selected
             //3. check barcode length
+            SaveData();
+        }
+
+        private void TextBoxSMCID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SaveData();
+            }
+        }
+        private void SaveData()
+        {
             int selectedLocationIndex = itemLocationListBox.SelectedIndex;
             int selectedItemIndex = itemNameListBox.SelectedIndex;
             string barcode = textBoxSMCID.Text;
@@ -60,8 +72,7 @@ namespace DBSA2._0.Pages
             {
                 ClassLibrary.ListViewDisplayContent selectedItem = (ClassLibrary.ListViewDisplayContent)itemNameListBox.SelectedItem;
                 ClassLibrary.ListViewDisplayContent selectedLocation = (ClassLibrary.ListViewDisplayContent)itemLocationListBox.SelectedItem;
-                //int selectedItemExpectedBarcodeLength = dataBaseManager.GetItemBarcodeCharacterLength(selectedItem.name);
-                dataBaseManager.SaveItemData(barcode, selectedItem.name, selectedLocation.name, ref message);
+                dataBaseManager.SaveNewItemData(barcode, selectedItem.name, selectedLocation.name, ref message);
             }
             else
             {
@@ -86,8 +97,6 @@ namespace DBSA2._0.Pages
             itemNameListBox.SelectedItem = -1;
             itemLocationListBox.SelectedItem = -1;
             textBoxSMCID.Text = string.Empty;
-
-        }        
-
+        }
     }
 }

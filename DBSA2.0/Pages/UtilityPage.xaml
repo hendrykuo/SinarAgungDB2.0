@@ -39,8 +39,8 @@
                       HorizontalContentAlignment="Center"
                       VerticalContentAlignment="Center">
                 <ComboBoxItem Content="Lokasi Gudang"/>
-                <ComboBoxItem Content="Barang"/>
-                <ComboBoxItem Content="Customer"/>
+                <ComboBoxItem Content="Daftar Barang"/>
+                <ComboBoxItem Content="Daftar Customer"/>
             </ComboBox>
             <TextBox Grid.Column="1"
                      Margin="5,5,5,5"
@@ -66,11 +66,12 @@
                       VerticalAlignment="Center"
                       HorizontalContentAlignment="Center"
                       VerticalContentAlignment="Center"/>
-            <TextBox Grid.Column="1"
+            <TextBox x:Name="itemFilePath" Grid.Column="1"
                      Margin="5,5,5,5"/>
             <Button Grid.Column="2"
                     Margin="5,5,5,5"
                     Content="Save"
+                    Click="SaveItemData"
                     Style="{StaticResource buttonStyle}"/>
         </Grid>
         <Label Grid.Row="5"

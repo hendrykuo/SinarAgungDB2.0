@@ -58,23 +58,21 @@ namespace DBSA2._0.ClassLibrary
                     command = connection.CreateCommand(commandString);
                     command.ExecuteNonQuery();
                 }
-                //UpdateItem();
             }
         }
-
+        public void CreateItemTable(Item item)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            {
+                string commandString = CreateTableIfNotExistString(item);
+                SQLiteCommand command = connection.CreateCommand(commandString);
+                command.ExecuteNonQuery();
+            }
+        }
         public bool UpdateItemData(string barcode, string name, string location, ref string message)
         {
-            items = ItemList;
-            Item selected = null;
+            Item selected = GetItem(name);
             bool isSucces = false;
-            foreach (var item in items)
-            {
-                if (item.itemName == name)
-                {
-                    selected = item;
-                    break;
-                }
-            }
             if (selected != null)
             {
                 if (barcode.Length == selected.characterLength)
@@ -112,19 +110,10 @@ namespace DBSA2._0.ClassLibrary
             }
             return isSucces;
         }
-        public bool SaveItemData(string barcode, string name, string location, ref string message)
-        {
-            items = ItemList;
-            Item selected = null;
+        public bool SaveNewItemData(string barcode, string name, string location, ref string message)
+         {
             bool isSucces = false;
-            foreach (var item in items)
-            {
-                if (item.itemName == name)
-                {
-                    selected = item;
-                    break;
-                }
-            }
+            Item selected = GetItem(name);
             if (selected != null)
             {
                 if (barcode.Length == selected.characterLength)
@@ -161,7 +150,43 @@ namespace DBSA2._0.ClassLibrary
                 message = string.Format("Error: Tidak di temukan di database");
             }
             return isSucces;
+        }
+        public bool SaveItemData(string itemName, ItemData itemData, ref string message)
+        {
+            Item selected = GetItem(itemName);
+            bool isSucces = false;
+            if (selected != null)
+            {
+                if (itemData.barcode.Length == selected.characterLength)
+                {
+                    if (!IsBarcodeExist(itemData.barcode, itemName))
+                    {
+                        using (SQLiteConnection connection = new SQLiteConnection(dbName))
+                        {
 
+                            SQLiteCommand command;
+                            string commandString = InsertOrReplaceIntoString(itemName, itemData);
+                            command = connection.CreateCommand(commandString);
+                            command.ExecuteNonQuery();
+                            message = "Sukses";
+                            isSucces = true;
+                        }
+                    }
+                    else
+                    {
+                        message = string.Format("Barcode sudah tersimpan");
+                    }
+                }
+                else
+                {
+                    message = string.Format("Error: panjang id input: {0} panjang id yang di perlukan: {1}", itemData.barcode.Length, selected.characterLength);
+                }
+            }
+            else
+            {
+                message = string.Format("Error: Tidak di temukan di database");
+            }
+            return isSucces;
         }
         private bool IsBarcodeExist(string barcode, string itemName)
         {
@@ -237,8 +262,44 @@ namespace DBSA2._0.ClassLibrary
         }
         private string InsertOrReplaceIntoString(string itemName, ItemData data)
         {
-            string result = string.Format("INSERT OR REPLACE INTO '{0}'(barcode, time, location) VALUES('{1}', '{2}', '{3}')", itemName, data.barcode, data.time, data.location);
+            string barcode = data.barcode;
+            string time = data.time;
+            string location = data.location;
+            if (data.barcode.Contains('\''))
+            {
+                barcode = UpdateAposthrope(barcode);
+            }
+            if (data.time.Contains('\''))
+            {
+                time = UpdateAposthrope(time);
+            }
+            if (data.location.Contains('\''))
+            {
+                location = UpdateAposthrope(location);
+            }
+
+            string result = string.Format("INSERT OR REPLACE INTO '{0}'(barcode, time, location) VALUES('{1}', '{2}', '{3}')", itemName, barcode, time, location);
             return result;
+        }
+        private string UpdateAposthrope(string data)
+        {
+            int count = data.Length;
+            string newData = string.Empty;
+            char aphostrope = '\'';
+            for (int i = 0; i < count; i++)
+            {
+                char c = data[i];
+                if (c == aphostrope)
+                {
+                    
+                    newData += "''";
+                }
+                else
+                { 
+                    newData += data[i];
+                }
+            }
+            return newData;
         }
         //item
         public int AddItem(Item item, ref string message)
@@ -303,24 +364,32 @@ namespace DBSA2._0.ClassLibrary
         public int DeleteItem(string itemName, ref string message)
         {
             int result = int.MinValue;
-            using (SQLiteConnection connection = new SQLiteConnection(dbName))
+            if (IsItemExist(itemName))
             {
-                try
+                using (SQLiteConnection connection = new SQLiteConnection(dbName))
                 {
-                    result = connection.Delete<Item>(itemName);
-                    message = "Sukses";
+                    try
+                    {
+                        result = connection.Delete<Item>(itemName);
+                        message = "Sukses";
+                    }
+                    catch (SQLiteException e)
+                    {
+                        message = "Gagal: " + e.Message;
+                    }
+                    catch (Exception e)
+                    {
+                        message = "Gagal: " + e.Message;
+                    }
                 }
-                catch (SQLiteException e)
-                {
-                    message = "Gagal: " + e.Message;
-                }
-                catch (Exception e)
-                {
-                    message = "Gagal: " + e.Message;
-                }
+            }
+            else
+            {
+                message = string.Format("Gagal: {0} Tidak Di Temukan", itemName);
             }
             return result;
         }
+
         protected void UpdateItem()
         {
             items.Clear();
@@ -364,6 +433,7 @@ namespace DBSA2._0.ClassLibrary
             }
             return result;
         }
+
         protected void UpdateOwnedLocation()
         {
             ownLocations.Clear();
@@ -451,6 +521,36 @@ namespace DBSA2._0.ClassLibrary
             {
                 customers = connection.Table<Customer>().ToList();
             }
+        }
+        protected bool IsItemExist(string itemName)
+        {
+            items = ItemList;
+            //Item selected = null;
+            bool isExist = false;
+            foreach (var item in items)
+            {
+                if (item.itemName == itemName)
+                {
+                    //selected = item;
+                    isExist = true;
+                    break;
+                }
+            }
+            return isExist;
+        }
+        protected Item GetItem(string itemName)
+        {
+            Item item = null;
+            items = ItemList;
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].itemName == itemName)
+                {
+                    item = items[i];
+                    break;
+                }
+            }
+            return item;
         }
     }
 }

@@ -61,6 +61,7 @@ namespace DBSA2._0.Pages
                     ClassLibrary.ListViewDisplayContent listViewItem = new ClassLibrary.ListViewDisplayContent(index, itemName, message);
                     outputListView.Items.Add(listViewItem);
                     UpdateSavedItemListBox();
+                    dataBaseManager.CreateItemTable(item);
                 }
             }
             itemNameTextBox.Text = string.Empty;

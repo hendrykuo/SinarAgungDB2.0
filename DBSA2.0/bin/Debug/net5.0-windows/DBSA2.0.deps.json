@@ -8,39 +8,48 @@
     ".NETCoreApp,Version=v5.0": {
       "DBSA2.0/1.0.0": {
         "dependencies": {
-          "ExcelDataReader": "3.6.0",
-          "ExcelDataReader.DataSet": "3.6.0",
-          "Microsoft.Office.Interop.Excel": "15.0.4795.1000",
+          "IronXL.Excel": "2021.9.0",
+          "SpreadsheetLight": "3.5.0",
           "sqlite-net-pcl": "1.8.116"
         },
         "runtime": {
           "DBSA2.0.dll": {}
         }
       },
-      "ExcelDataReader/3.6.0": {
-        "runtime": {
-          "lib/netstandard2.0/ExcelDataReader.dll": {
-            "assemblyVersion": "3.6.0.0",
-            "fileVersion": "3.6.0.0"
-          }
-        }
-      },
-      "ExcelDataReader.DataSet/3.6.0": {
+      "DocumentFormat.OpenXml/2.11.3": {
         "dependencies": {
-          "ExcelDataReader": "3.6.0"
+          "System.IO.Packaging": "4.7.0"
         },
         "runtime": {
-          "lib/netstandard2.0/ExcelDataReader.DataSet.dll": {
-            "assemblyVersion": "3.6.0.0",
-            "fileVersion": "3.6.0.0"
+          "lib/netstandard2.0/DocumentFormat.OpenXml.dll": {
+            "assemblyVersion": "2.11.3.0",
+            "fileVersion": "2.11.3.0"
           }
         }
       },
-      "Microsoft.Office.Interop.Excel/15.0.4795.1000": {
+      "IronXL.Excel/2021.9.0": {
         "runtime": {
-          "lib/net20/Microsoft.Office.Interop.Excel.dll": {
-            "assemblyVersion": "15.0.0.0",
-            "fileVersion": "15.0.4795.1000"
+          "lib/netstandard2.0/IronXL.dll": {
+            "assemblyVersion": "2021.9.0.0",
+            "fileVersion": "2021.9.0.0"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/5.0.0": {},
+      "Microsoft.Win32.SystemEvents/5.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0"
+        }
+      },
+      "SpreadsheetLight/3.5.0": {
+        "dependencies": {
+          "DocumentFormat.OpenXml": "2.11.3",
+          "System.Drawing.Common": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/SpreadsheetLight.dll": {
+            "assemblyVersion": "3.5.0.0",
+            "fileVersion": "3.5.0.0"
           }
         }
       },
@@ -163,6 +172,12 @@
           }
         }
       },
+      "System.Drawing.Common/5.0.0": {
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "5.0.0"
+        }
+      },
+      "System.IO.Packaging/4.7.0": {},
       "System.Memory/4.5.3": {}
     }
   },
@@ -172,26 +187,40 @@
       "serviceable": false,
       "sha512": ""
     },
-    "ExcelDataReader/3.6.0": {
+    "DocumentFormat.OpenXml/2.11.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eXyxTwG7EEWpgQX3juZ2KcndqTqm/ydx9GXS2lUiMJU54U4h5eXdygRtVgINv0t60ezPWEb+lL7uM7Q+wm5BBA==",
-      "path": "exceldatareader/3.6.0",
-      "hashPath": "exceldatareader.3.6.0.nupkg.sha512"
+      "sha512": "sha512-dCugN386ka+LwcOHnxi4gUHbiDeIw0/GEYw1sXFhYiErGFbJpRpscRcn5b12dywUReFCOgGNJ/l16zG5udkC/A==",
+      "path": "documentformat.openxml/2.11.3",
+      "hashPath": "documentformat.openxml.2.11.3.nupkg.sha512"
     },
-    "ExcelDataReader.DataSet/3.6.0": {
+    "IronXL.Excel/2021.9.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-miW3sWmPXnLM38YadRIfnhL4W4QZajpS6Q/OqsOpFJU5ct8h+M/fMpbGMm5INtsMP0Y1k0WK0stIfSW3RP31Xg==",
-      "path": "exceldatareader.dataset/3.6.0",
-      "hashPath": "exceldatareader.dataset.3.6.0.nupkg.sha512"
+      "sha512": "sha512-/att7CfDLCdEk+NKfgTQ0dlglzqyBKzTuqMB+0u7Maf7b23NEZuaR58Ogr/uh6eBPh3I68AVMsi30+evp56XbQ==",
+      "path": "ironxl.excel/2021.9.0",
+      "hashPath": "ironxl.excel.2021.9.0.nupkg.sha512"
     },
-    "Microsoft.Office.Interop.Excel/15.0.4795.1000": {
+    "Microsoft.NETCore.Platforms/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-DfceS96ustwfL8EOJNNRtpk6b0RylhjNpgeeemuvi9X4GYks2UTeAimjSrdFEfuqRo5ibZ4Sd0gJIeDr9gMa6Q==",
-      "path": "microsoft.office.interop.excel/15.0.4795.1000",
-      "hashPath": "microsoft.office.interop.excel.15.0.4795.1000.nupkg.sha512"
+      "sha512": "sha512-VyPlqzH2wavqquTcYpkIIAQ6WdenuKoFN0BdYBbCWsclXacSOHNQn66Gt4z5NBqEYW0FAPm5rlvki9ZiCij5xQ==",
+      "path": "microsoft.netcore.platforms/5.0.0",
+      "hashPath": "microsoft.netcore.platforms.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.Win32.SystemEvents/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Bh6blKG8VAKvXiLe2L+sEsn62nc1Ij34MrNxepD2OCrS5cpCwQa9MeLyhVQPQ/R4Wlzwuy6wMK8hLb11QPDRsQ==",
+      "path": "microsoft.win32.systemevents/5.0.0",
+      "hashPath": "microsoft.win32.systemevents.5.0.0.nupkg.sha512"
+    },
+    "SpreadsheetLight/3.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Yo262RbayDSUqQOKSjDxo61MTnCcEZ1i7NZvQeytIcggRwrrze6B7UMpJq+LR6vgJM9zwu3M39oXFQlJWpPY1A==",
+      "path": "spreadsheetlight/3.5.0",
+      "hashPath": "spreadsheetlight.3.5.0.nupkg.sha512"
     },
     "sqlite-net-pcl/1.8.116": {
       "type": "package",
@@ -227,6 +256,20 @@
       "sha512": "sha512-AY6+vv/4ji1mCkLrS6HP/88rHT9YFKRyg3LUj8RyIk6imJMUFdQDiP8rK8gq0a/0FbqspLjK1t7rtKcr7FXRYA==",
       "path": "sqlitepclraw.provider.dynamic_cdecl/2.0.4",
       "hashPath": "sqlitepclraw.provider.dynamic_cdecl.2.0.4.nupkg.sha512"
+    },
+    "System.Drawing.Common/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SztFwAnpfKC8+sEKXAFxCBWhKQaEd97EiOL7oZJZP56zbqnLpmxACWA8aGseaUExciuEAUuR9dY8f7HkTRAdnw==",
+      "path": "system.drawing.common/5.0.0",
+      "hashPath": "system.drawing.common.5.0.0.nupkg.sha512"
+    },
+    "System.IO.Packaging/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9VV4KAbgRQZ79iEoG40KIeZy38O30oWwewScAST879+oki8g/Wa2HXZQgrhDDxQM4GkP1PnRJll05NMiVPbYAw==",
+      "path": "system.io.packaging/4.7.0",
+      "hashPath": "system.io.packaging.4.7.0.nupkg.sha512"
     },
     "System.Memory/4.5.3": {
       "type": "package",

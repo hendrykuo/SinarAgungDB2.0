@@ -31,9 +31,10 @@
                    Content="ID"
                    Style="{StaticResource contentLabelStyle}"/>
             <TextBox Grid.Column="1"
-                       Margin="5,5,5,0"
-                       x:Name="textBoxSMCID"
-                       Style="{StaticResource textBoxStyle}"/>
+                     Margin="5,5,5,0"
+                     x:Name="textBoxSMCID"
+                     KeyDown="TextBoxSMCID_KeyDown"
+                     Style="{StaticResource textBoxStyle}"/>
             <Button Grid.Column="2"
                     Style="{StaticResource buttonStyle}"
                     Content="Cek"

@@ -32,6 +32,7 @@
             <TextBox Grid.Column="1"
                        Margin="5,5,5,0"
                        x:Name="textBoxSMCID"
+                     KeyDown="TextBoxSMCID_KeyPressed"
                        Style="{StaticResource textBoxStyle}"/>
             <Button Grid.Column="2"
                     Style="{StaticResource buttonStyle}"

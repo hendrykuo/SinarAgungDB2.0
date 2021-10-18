@@ -73,6 +73,7 @@ namespace DBSA2._0.Pages
                 }
             }
         }
+
         public void UpdateUI()
         {
             UpdateWarehuseList();

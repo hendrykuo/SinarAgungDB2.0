@@ -61,16 +61,29 @@ namespace DBSA2._0.Pages
 
         private void deleteButtonClick(object sender, RoutedEventArgs e)
         {
-            string customerName = customerNameTextBox.Text;
+            string data = customerNameTextBox.Text;
+            int selectedIndex = savedCustomerListView.SelectedIndex;
+            string customerName = string.Empty;
+            if (!string.IsNullOrEmpty(data))
+            {
+                customerName = data;
+            }
+            else if (savedCustomerListView.SelectedIndex >= 0 )
+            { 
+                ClassLibrary.ListViewDisplayContent displayContent = (ClassLibrary.ListViewDisplayContent)savedCustomerListView.Items[selectedIndex];
+                customerName = displayContent.name;
+            }
+            
             if (!string.IsNullOrEmpty(customerName))
             {
                 string message = string.Empty;
                 dataBaseManager.DeleteCustomer(customerName, ref message);
-                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(outputListView.Items.Count+1, customerName, message);
+                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(outputListView.Items.Count + 1, customerName, message);
                 outputListView.Items.Add(listViewDisplayContent);
                 UpdateSavedCustomerListView();
             }
             customerNameTextBox.Text = string.Empty;
+            savedCustomerListView.SelectedIndex = -1;
         }
     }
 }
