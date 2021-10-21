@@ -48,6 +48,7 @@ namespace DBSA2._0
             registerItemPage    = new Pages.RegisterItemPage(dataBaseManager);
             wareHousePage       = new Pages.WareHousePage(dataBaseManager);
             utilityPage         = new Pages.UtilityPage(dataBaseManager);
+            //programMainFrame.Content = inputItemPage;
         }
 
         void ToggleButton(Button button)

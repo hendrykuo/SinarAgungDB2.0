@@ -30,10 +30,20 @@ namespace DBSA2._0.Pages
         {
             itemNameListBox.Items.Clear();
             List<ClassLibrary.Item> items = dataBaseManager.ItemList;
-            for (int i = 0; i < items.Count; i++)
+            List<string> sortedItem = ClassLibrary.Helper.SortItemNameAlphabetically(items);
+            if (sortedItem != null)
             {
-                ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(i+1 , items[i].itemName);
-                itemNameListBox.Items.Add(content);
+                for (int i = 0; i < sortedItem.Count; i++)
+                {
+                    ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(i+1 , sortedItem[i]);
+                    itemNameListBox.Items.Add(content);
+                }
+            }
+            else
+            {
+                int index = 1;
+                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, "Kosong");
+                itemNameListBox.Items.Add(displayContent);
             }
             itemLocationListBox.Items.Clear();
             List<ClassLibrary.OwnLocations> ownLocations = dataBaseManager.OwnLocationList;
@@ -73,6 +83,10 @@ namespace DBSA2._0.Pages
                 ClassLibrary.ListViewDisplayContent selectedItem = (ClassLibrary.ListViewDisplayContent)itemNameListBox.SelectedItem;
                 ClassLibrary.ListViewDisplayContent selectedLocation = (ClassLibrary.ListViewDisplayContent)itemLocationListBox.SelectedItem;
                 dataBaseManager.SaveNewItemData(barcode, selectedItem.name, selectedLocation.name, ref message);
+                if (!message.Contains("Gagal"))
+                {
+                    Console.Beep();
+                }
             }
             else
             {

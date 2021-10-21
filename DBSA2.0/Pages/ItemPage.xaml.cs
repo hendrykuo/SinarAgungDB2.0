@@ -36,6 +36,7 @@ namespace DBSA2._0.Pages
         {
             savedItemListBox.Items.Clear();
             List<ClassLibrary.Item> items = dataBaseManager.ItemList;
+
             for (int i = 0; i < items.Count; i++)
             {
                 string message = items[i].characterLength.ToString();
@@ -43,31 +44,55 @@ namespace DBSA2._0.Pages
                 savedItemListBox.Items.Add(displayContent);
             }
         }
-        private void saveButtonClick(object sender, RoutedEventArgs e)
+        private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
             //check if it is empty or not
             string itemName = itemNameTextBox.Text;
-            if (itemName.Length > 0
-                && idLengthTextBox.Text.Length > 0)
+            bool isBarcodeNullOrEmpty = string.IsNullOrEmpty(itemName);
+            bool isBarcodeIDLengthNullOrEmpty = string.IsNullOrEmpty(idLengthTextBox.Text);
+            if (!isBarcodeNullOrEmpty
+                && !isBarcodeIDLengthNullOrEmpty)
             {
                 string message = string.Empty;
                 int idLength = int.MinValue;
-                if(int.TryParse(idLengthTextBox.Text, out idLength))
+                if (int.TryParse(idLengthTextBox.Text, out idLength))
                 {
                     //save it to db
                     ClassLibrary.Item item = new ClassLibrary.Item() { itemName = itemName, characterLength = idLength };
                     dataBaseManager.AddItem(item, ref message);
-                    int index = outputListView.Items.Count + 1;
-                    ClassLibrary.ListViewDisplayContent listViewItem = new ClassLibrary.ListViewDisplayContent(index, itemName, message);
-                    outputListView.Items.Add(listViewItem);
+                    AddItemToListView(outputListView, itemName, message);
                     UpdateSavedItemListBox();
                     dataBaseManager.CreateItemTable(item);
+                    Console.Beep();
                 }
+                else
+                {
+                    message = string.Format("Panjang ID tidak valid, data yang di masukkan[{0}]", idLengthTextBox.Text);
+                    AddItemToListView(outputListView, itemName, message);
+                }
+            }
+            else
+            {
+                string message = "Simpan Gagal:";
+                if (isBarcodeNullOrEmpty)
+                {
+                    message += "[Barcode Belum di isi]";
+                }
+                if (isBarcodeNullOrEmpty)
+                {
+                    message += "[Panjang ID belum di isi]";
+                }
+                AddItemToListView(outputListView, itemName, message);
             }
             itemNameTextBox.Text = string.Empty;
             idLengthTextBox.Text = string.Empty;
         }
-
+        void AddItemToListView(ListView listView, string itemName, string message)
+        {
+            int index = listView.Items.Count + 1;
+            ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(index, itemName, message);
+            listView.Items.Add(content);
+        }
         private void deleteButtonClick(object sender, RoutedEventArgs e)
         {
             string itemName = itemNameTextBox.Text;

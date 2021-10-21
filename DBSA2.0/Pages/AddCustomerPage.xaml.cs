@@ -36,10 +36,20 @@ namespace DBSA2._0.Pages
         private void UpdateSavedCustomerListView()
         {
             List<ClassLibrary.Customer> customers = dataBaseManager.CustomersList;
+            List<ClassLibrary.Customer> sortedCustomers = ClassLibrary.Helper.SortNamesAlphabetically(customers);
             savedCustomerListView.Items.Clear();
-            for (int i = 0; i < customers.Count; i++)
+            if (sortedCustomers != null)
             {
-                ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(i+1, customers[i].name);
+                for (int i = 0; i < sortedCustomers.Count; i++)
+                {
+                    ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(i + 1, sortedCustomers[i].name);
+                    savedCustomerListView.Items.Add(content);
+                }
+            }
+            else
+            {
+                int index = 1;
+                ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(index, "Kosong");
                 savedCustomerListView.Items.Add(content);
             }
         }

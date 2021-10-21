@@ -37,7 +37,7 @@
                      x:Name="itemNameTextBox"/>
                 <Button Grid.Column="2"
                     Style="{StaticResource buttonStyle}"
-                    Click="saveButtonClick"
+                    Click="SaveButtonClick"
                     Margin="5,5,5,5"
                     Content="Simpan"/>
                 <Button Grid.Column="3"

@@ -35,23 +35,43 @@ namespace DBSA2._0.Pages
 
         public void UpdateUI()
         {
-            List<ClassLibrary.Item> items = dataBaseManager.ItemList;
             List<ClassLibrary.Customer> customers = dataBaseManager.CustomersList;
-
+            List<ClassLibrary.Customer> sortedCustomers = ClassLibrary.Helper.SortNamesAlphabetically(customers);
             customerListView.Items.Clear();
-            for (int i = 0; i < customers.Count; i++)
+            if (sortedCustomers != null)
             {
-                int index = i + 1;
-                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, customers[i].name);
-                customerListView.Items.Add(listViewDisplayContent);
+                for (int i = 0; i < sortedCustomers.Count; i++)
+                {
+                    int index = i + 1;
+                    ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, sortedCustomers[i].name);
+                    customerListView.Items.Add(listViewDisplayContent);
+                }
+            }
+            else
+            {
+                int index = 1;
+                ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(index, "Kosong");
+                customerListView.Items.Add(content);
             }
 
-            itemListView.Items.Clear(); ;
-            for (int i = 0; i < items.Count; i++)
+            List<ClassLibrary.Item> items = dataBaseManager.ItemList;
+            List<string> sortedItem = ClassLibrary.Helper.SortItemNameAlphabetically(items);
+            itemListView.Items.Clear();
+            if (sortedItem != null)
             {
-                int index = i + 1;
-                ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, items[i].itemName);
-                itemListView.Items.Add(listViewDisplayContent);
+                for (int i = 0; i < sortedItem.Count; i++)
+                {
+                    int index = i + 1;
+                    ClassLibrary.ListViewDisplayContent listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, sortedItem[i]);
+                    itemListView.Items.Add(listViewDisplayContent);
+                }
+
+            }
+            else
+            {
+                int index = 1;
+                ClassLibrary.ListViewDisplayContent content = new ClassLibrary.ListViewDisplayContent(index, "Kosong");
+                itemListView.Items.Add(content);
             }
         }
 
@@ -67,7 +87,8 @@ namespace DBSA2._0.Pages
             string barcode = textBoxSMCID.Text;
             int selectedItemIndex = itemListView.SelectedIndex;
             int selectedCustomerIndex = customerListView.SelectedIndex;
-            if (!string.IsNullOrWhiteSpace(barcode)
+            bool isEmptyString = string.IsNullOrWhiteSpace(barcode);
+            if (!isEmptyString
                 && selectedItemIndex >= 0
                 && selectedCustomerIndex >= 0)
             {
@@ -80,12 +101,36 @@ namespace DBSA2._0.Pages
                 if (message == "Sukses")
                 {
                     message = string.Format("{0}-{1}-{2} Sukses terdaftar", itemName, barcode, customerName);
+                    Console.Beep();
                 }
-                int index = dataListView.Items.Count + 1;
-                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, barcode, message);
-                dataListView.Items.Add(displayContent);
+                AddItemToListView(dataListView, barcode, message);
+            }
+            else
+            {
+                string message = "Gagal:";
+                if (isEmptyString)
+                {
+                    message += "[Barcode belum terisi]";
+                }
+                if (selectedItemIndex < 0)
+                {
+                    message += "[Jenis Barang Belum terpilih]";
+                }
+                if (selectedCustomerIndex < 0)
+                {
+                    message += "[Customer belum terpilih]";
+                }
+                AddItemToListView(dataListView, barcode, message);
             }
             textBoxSMCID.Text = string.Empty;
         }
+
+        void AddItemToListView(ListView listView, string barcode, string message)
+        {
+            int index = listView.Items.Count + 1;
+            ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, barcode, message);
+            listView.Items.Add(displayContent);
+        }
+
     }
 }

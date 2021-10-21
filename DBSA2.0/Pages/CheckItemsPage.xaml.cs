@@ -34,11 +34,20 @@ namespace DBSA2._0.Pages
         {
             itemNameListView.Items.Clear();
             List<ClassLibrary.Item> itemNameList = dataBaseManager.ItemList;
-
-            for (int i = 0; i < itemNameList.Count; i++)
+            List<string> sortedItemNameList = ClassLibrary.Helper.SortItemNameAlphabetically(itemNameList);
+            if (itemNameList != null)
             {
-                int index = i + 1;
-                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, itemNameList[i].itemName);
+                for (int i = 0; i < sortedItemNameList.Count; i++)
+                {
+                    int index = i + 1;
+                    ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, sortedItemNameList[i]);
+                    itemNameListView.Items.Add(displayContent);
+                }
+            }
+            else
+            {
+                int index = 1;
+                ClassLibrary.ListViewDisplayContent displayContent = new ClassLibrary.ListViewDisplayContent(index, "Kosong");
                 itemNameListView.Items.Add(displayContent);
             }
         }
@@ -61,6 +70,7 @@ namespace DBSA2._0.Pages
                 {
                     message = message + string.Format(": Lokasi[{0}] Waktu terdaftar[{1}]", itemData.location, itemData.time);
                     listViewDisplayContent = new ClassLibrary.ListViewDisplayContent(index, barcode, message);
+                    Console.Beep();
                 }
                 else
                 {

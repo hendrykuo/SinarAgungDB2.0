@@ -142,12 +142,12 @@ namespace DBSA2._0.ClassLibrary
                 }
                 else
                 {
-                    message = string.Format("Error: panjang id input: {0} panjang id yang di perlukan: {1}", barcode.Length, selected.characterLength);
+                    message = string.Format("Gagal: panjang id input: {0} panjang id yang di perlukan: {1}", barcode.Length, selected.characterLength);
                 }
             }
             else
             {
-                message = string.Format("Error: Tidak di temukan di database");
+                message = string.Format("Gagal: Tidak di temukan di database");
             }
             return isSucces;
         }
